@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Number;
 
 class PaymentPlan extends Resource
 {
@@ -23,12 +24,12 @@ class PaymentPlan extends Resource
      */
     public static function singularLabel()
     {
-        return __('Planes de pagos');
+        return __('Plan de pagos');
     }
 
     public static function label()
     {
-        return __('Plan de pagos');
+        return __('Planes de pagos');
     }
 
     /**
@@ -57,8 +58,28 @@ class PaymentPlan extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Nombre', 'name')->rules('required', 'max:255')->sortable(),
-
+            Text::make('Nombre', 'name')->rules('required', 'max:255'),
+            Number::make('Descuento', 'discount')->min(0)->max(100)->sortable()->placeholder('Porcentaje de descuento')->displayUsing(
+                function($value){
+                    if($value != null){
+                        return $value.'%';
+                    }else{
+                        return $value;
+                    }
+                }
+            ),
+            Number::make('Enganche', 'down_payment')->min(0)->max(100)->rules('required')->placeholder('Porcentaje de enganche')->sortable()->displayUsing(
+                function($value){
+                    return $value.'%';
+                }
+            ),
+            Number::make('Porcentaje de Meses', 'months_percent')->min(0)->max(100)->sortable()->rules('required')->displayUsing(
+                function($value){
+                    return $value.'%';
+                }
+            ),
+            Number::make('Cantidad de Meses', 'months_quantity')->sortable()->min(0)->max(100)->rules('required'),
+            
         ];
     }
 

@@ -26,6 +26,21 @@ class User extends Resource
      */
     public static $title = 'name';
 
+        /**
+     * Get the displayable singular label of the resource.
+     *
+     * @return string
+     */
+    public static function singularLabel()
+    {
+        return __('Usuario');
+    }
+
+    public static function label()
+    {
+        return __('Usuarios');
+    }
+
     /**
      * The columns that should be searched.
      *
@@ -48,7 +63,7 @@ class User extends Resource
 
             Gravatar::make()->maxWidth(50),
 
-            Text::make('Name')
+            Text::make('Nombre', 'name')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
@@ -58,7 +73,7 @@ class User extends Resource
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
-            Password::make('Password')
+            Password::make('Contraseña', 'password')
                 ->onlyOnForms()
                 ->creationRules('required', Rules\Password::defaults())
                 ->updateRules('nullable', Rules\Password::defaults()),

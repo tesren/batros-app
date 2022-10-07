@@ -449,5 +449,7 @@
     "Filename": "Filename",
     "Type": "Type",
     "CSV (.csv)": "CSV (.csv)",
-    "Excel (.xlsx)": "Excel (.xlsx)"
+    "Excel (.xlsx)": "Excel (.xlsx)",
+    "Upload New Media" : "Subir imágenes",
+    "Add New Media" : "Subir imágenes"
 }

@@ -5,6 +5,9 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Text;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 
 class Section extends Resource
 {
@@ -16,11 +19,27 @@ class Section extends Resource
     public static $model = \App\Models\Section::class;
 
     /**
+     * Get the displayable singular label of the resource.
+     *
+     * @return string
+     */
+    public static function singularLabel()
+    {
+        return __('Vista');
+    }
+
+    public static function label()
+    {
+        return __('Vistas del edificio');
+    }
+
+
+    /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'name_es';
 
     /**
      * The columns that should be searched.
@@ -28,7 +47,7 @@ class Section extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'name_es', 'name_en'
     ];
 
     /**
@@ -41,6 +60,9 @@ class Section extends Resource
     {
         return [
             ID::make()->sortable(),
+            Text::make('Nombre', 'name_es')->rules('required', 'max:150')->help('El nombre en Español'),
+            Text::make('Name', 'name_en')->rules('required', 'max:150')->help('El nombre en Inglés'),
+            Images::make('Imagen', 'building_views')->hideFromIndex()->rules('required')->conversionOnDetailView('preview'), 
         ];
     }
 
