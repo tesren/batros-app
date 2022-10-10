@@ -4,6 +4,9 @@ namespace App\Nova\Dashboards;
 
 use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Dashboards\Main as Dashboard;
+use App\Nova\Metrics\UnitsPerStatus;
+use App\Nova\Metrics\MessagesReceived;
+use App\Nova\Metrics\LowestUnitPrice;
 
 class Main extends Dashboard
 {
@@ -15,7 +18,19 @@ class Main extends Dashboard
     public function cards()
     {
         return [
-            new Help,
+            new UnitsPerStatus,
+            new LowestUnitPrice,
+            new MessagesReceived,
         ];
+    }
+
+    /**
+     * Get the displayable name of the dashboard.
+     *
+     * @return string
+     */
+    public function name()
+    {
+        return __('Panel Principal');
     }
 }

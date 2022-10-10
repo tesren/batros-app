@@ -5,6 +5,10 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Number;
+use App\Nova\Unit;
+use Laravel\Nova\Fields\BelongsTo;
 
 class Shape extends Resource
 {
@@ -14,6 +18,22 @@ class Shape extends Resource
      * @var string
      */
     public static $model = \App\Models\Shape::class;
+
+
+    /**
+     * Get the displayable singular label of the resource.
+     *
+     * @return string
+     */
+    public static function singularLabel()
+    {
+        return __('Polígono');
+    }
+
+    public static function label()
+    {
+        return __('Polígonos');
+    }
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -41,6 +61,10 @@ class Shape extends Resource
     {
         return [
             ID::make()->sortable(),
+            BelongsTo::make('Unidad', 'unit', Unit::class)->withoutTrashed()->rules('required'),
+            Text::make('Puntos', 'points')->rules('required', 'max:255')->help('Todos los puntos del polígono'),
+            Number::make('Texto X', 'text_x')->rules('required')->min(0)->help('Posición en X del texto del polígono'),
+            Number::make('Texto Y', 'text_y')->rules('required')->min(0)->help('Posición en Y del texto del polígono'),
         ];
     }
 
