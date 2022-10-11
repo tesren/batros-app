@@ -1,0 +1,127 @@
+:root{
+    --blue : #1D3F4F;
+    --darkblue: #0F303F;
+    --lightblue: #E1EDE3;
+    --lighterblue: #F9F3EE;
+}
+
+/* Estilos generales */
+
+body{
+    font-family: 'Lexend', sans-serif !important;
+    background-color: var(--blue);
+}
+
+.bg-darkblue{
+    background-color: var(--darkblue) !important;
+}
+
+.bg-blue{
+    background-color: var(--blue) !important;
+}
+
+.shadow-4 {
+    box-shadow: 0 2px 4px -1px #0003,0 4px 5px #00000024,0 1px 10px #0000001f;
+}
+
+.shadow-5 {
+    box-shadow: 0 3px 5px -1px #0003,0 5px 8px #00000024,0 1px 14px #0000001f;
+}
+
+.shadow-6 {
+    box-shadow: 0 3px 5px -1px #0003,0 6px 10px #00000024,0 1px 18px #0000001f;
+}
+
+.bg-blue-gradient{
+    background: rgb(29,63,79);
+    background: linear-gradient(180deg, rgba(29,63,79,0) 25%, rgba(29,63,79,1) 97%);
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.row{
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.text-lighterblue{
+    color: var(--lighterblue) !important;
+}
+
+.text-lightblue{
+    color: var(--lightblue) !important;
+}
+
+.btn-blue{
+    background-color: var(--lightblue);
+    color: var(--blue);
+    box-shadow: 0 3px 5px -1px #0003,0 5px 8px #00000024,0 1px 14px #0000001f;
+}
+
+.btn-blue:hover, .btn-blue:focus{
+    background-color: #c8d5cb;
+    color: var(--blue);
+    transition: 0.2s;
+}
+
+.mt-6{
+    margin-top: 5.5rem !important;
+}
+
+.mb-6{
+    margin-bottom: 5.5rem !important;
+}
+
+.my-6{
+    margin-top: 5.5rem !important;
+    margin-bottom: 5.5rem !important;
+}
+
+.fs-0{
+    font-size: 3.5rem;
+}
+
+/* Formulario de contacto */
+.form-contact{
+    background-color: transparent;
+    border-radius: 0;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #FFF;
+    color: white !important;
+    display: block;
+    width: 100%;
+    font-family: 'Lexend', sans-serif !important;
+    padding: 5px;
+}
+
+.form-contact::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1; /* Firefox */
+}
+
+
+@media (max-width: 992px) {
+    .mt-6{
+        margin-top: 3.5rem !important;
+    }
+    
+    .mb-6{
+        margin-bottom: 3.5rem !important;
+    }
+    
+    .my-6{
+        margin-top: 3.5rem !important;
+        margin-bottom: 3.5rem !important;
+    }
+
+    .fs-0{
+        font-size: 3rem;
+    }
+}

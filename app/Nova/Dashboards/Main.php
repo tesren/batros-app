@@ -7,6 +7,7 @@ use Laravel\Nova\Dashboards\Main as Dashboard;
 use App\Nova\Metrics\UnitsPerStatus;
 use App\Nova\Metrics\MessagesReceived;
 use App\Nova\Metrics\LowestUnitPrice;
+use App\Nova\Metrics\SoldUnits;
 
 class Main extends Dashboard
 {
@@ -20,6 +21,7 @@ class Main extends Dashboard
         return [
             new UnitsPerStatus,
             new LowestUnitPrice,
+            new SoldUnits,
             new MessagesReceived,
         ];
     }
