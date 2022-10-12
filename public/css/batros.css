@@ -106,6 +106,37 @@ body{
     opacity: 1; /* Firefox */
 }
 
+.svg-container { 
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    vertical-align: middle; 
+    overflow: hidden;
+    z-index: 1;
+}
+
+.svg-container svg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+}
+
+.svg-container .fa-location-dot{
+    color: #899CA0;
+    font-size: 40px;
+}
+
+.svg-container button:hover i, .svg-container button:focus i{
+    color: #4b757d;
+}
+
+.custom-popover{
+    --bs-popover-bg: var(--darkblue) !important;
+    --bs-popover-body-color: var(--lighterblue) !important;
+    --bs-popover-body-padding-x: 10px;
+    --bs-popover-body-padding-y: 5px;
+}
 
 @media (max-width: 992px) {
     .mt-6{
@@ -123,5 +154,10 @@ body{
 
     .fs-0{
         font-size: 3rem;
+    }
+
+    .svg-container .fa-location-dot{
+        color: #899CA0;
+        font-size: 15px;
     }
 }

@@ -21,7 +21,7 @@
     @yield('content')
     @include('shared.footer')
 
-    <script src="{{asset('js/bootstrap.bundle.min.js')}}" async></script>
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('js/fontawesome.min.js')}}" async></script>
     @yield('javascript')
 </body>

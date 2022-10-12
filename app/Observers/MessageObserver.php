@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\Message;
 use App\Notifications\MessageReceived;
+use Illuminate\Support\Facades\Notification;
 
 class MessageObserver
 {

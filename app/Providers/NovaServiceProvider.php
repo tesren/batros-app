@@ -16,7 +16,7 @@ use App\Nova\Dashboards\Main;
 use Illuminate\Http\Request;
 use Laravel\Nova\Menu\MenuSection;
 use Illuminate\Support\Facades\Blade;
-
+use App\Nova\ConstructionUpdate;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -39,6 +39,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 MenuSection::resource(Agent::class)->icon('user-group'),
                 MenuSection::resource(PaymentPlan::class)->icon('currency-dollar'),
                 MenuSection::resource(Message::class)->icon('inbox-in'),
+                MenuSection::resource(ConstructionUpdate::class)->icon('camera'),
                 MenuSection::resource(Shape::class)->icon('cube'),
                 MenuSection::resource(User::class)->icon('user'),
 
