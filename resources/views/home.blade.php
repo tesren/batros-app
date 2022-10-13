@@ -25,7 +25,7 @@
     {{-- Descripción --}}
     <div class="row justify-content-center pt-5 mb-6" id="info">
         <div class="col-12 col-lg-10 col-xl-5 mb-4">
-            <img src="{{asset('img/description-img.jpg')}}" alt="Batros Marina Residences" class="w-100 px-0 rounded-2 shadow-6">
+            <img src="{{asset('img/description-img.jpg')}}" alt="Batros Marina Residences" class="w-100 px-0 rounded-2 shadow-6" loading="lazy">
         </div>
 
         <div class="w-100"></div>
@@ -43,28 +43,28 @@
 
         <div class="row justify-content-center text-lightblue mb-5">
             <div class="col-6 col-xl-2">
-                <img src="{{asset('img/amenities/rooftop.png')}}" alt="{{__('Rooftop 360')}}" class="col-12 col-lg-9">
+                <img src="{{asset('img/amenities/rooftop.png')}}" alt="{{__('Rooftop 360')}}" class="col-12 col-lg-9" loading="lazy">
                 <div class="fs-3 fw-light">{{__('Terraza 360°')}}</div>
             </div>
             <div class="col-6 col-xl-2">
-                <img src="{{asset('img/amenities/bbq.png')}}" alt="{{__('Asador & Bar')}}" class="col-12 col-lg-9">
+                <img src="{{asset('img/amenities/bbq.png')}}" alt="{{__('Asador & Bar')}}" class="col-12 col-lg-9" loading="lazy">
                 <div class="fs-3 fw-light">{{__('Asador & Bar')}}</div>
             </div>
             <div class="col-6 col-xl-2">
-                <img src="{{asset('img/amenities/lounge.png')}}" alt="{{__('Mindfulness Lounge')}}" class="col-12 col-lg-9">
+                <img src="{{asset('img/amenities/lounge.png')}}" alt="{{__('Mindfulness Lounge')}}" class="col-12 col-lg-9" loading="lazy">
                 <div class="fs-3 fw-light">{{__('Mindfulness Lounge')}}</div>
             </div>
             <div class="col-6 col-xl-2">
-                <img src="{{asset('img/amenities/gym.png')}}" alt="{{__('Gimnasio')}}" class="col-12 col-lg-9">
+                <img src="{{asset('img/amenities/gym.png')}}" alt="{{__('Gimnasio')}}" class="col-12 col-lg-9" loading="lazy">
                 <div class="fs-3 fw-light">{{__('Gimnasio')}}</div>
             </div>
             <div class="col-6 col-xl-2">
-                <img src="{{asset('img/amenities/pool.png')}}" alt="{{__('Alberca Sky')}}" class="col-12 col-lg-9">
+                <img src="{{asset('img/amenities/pool.png')}}" alt="{{__('Alberca Sky')}}" class="col-12 col-lg-9" loading="lazy">
                 <div class="fs-3 fw-light">{{__('Alberca Sky')}}</div>
             </div>
         </div>
 
-        <img width="250px" class="d-none d-lg-block position-absolute start-0" src="{{asset('img/feather.png')}}" alt="" style="z-index: 5; top:60%; transform: scaleX(-1);">
+        <img width="250px" class="d-none d-lg-block position-absolute start-0" src="{{asset('img/feather.png')}}" alt="" style="z-index: 5; top:60%; transform: scaleX(-1);" loading="lazy">
 
         <a href="#" class="btn btn-blue">{{__('Conocer más')}}</a>
 
@@ -82,8 +82,8 @@
         </div>
 
         <div class="col-12 col-lg-4 col-xl-3 position-relative">
-            <img src="{{asset('img/golf.jpg')}}" alt="Golf Marina Vallarta" class="w-100 rounded-2 shadow-6 position-relative" style="z-index:5;">
-            <img width="250px" class="d-none d-lg-block position-absolute top-0" src="{{asset('img/feather.png')}}" alt="" style="z-index: 1; left:75%; transform: rotate(180deg);">
+            <img src="{{asset('img/golf.jpg')}}" alt="Golf Marina Vallarta" class="w-100 rounded-2 shadow-6 position-relative" style="z-index:5;" loading="lazy">
+            <img width="250px" class="d-none d-lg-block position-absolute top-0" src="{{asset('img/feather.png')}}" alt="" style="z-index: 1; left:75%; transform: rotate(180deg);" loading="lazy">
         </div>
 
     </div>

@@ -16,7 +16,9 @@
                 <input type="number" class="form-contact mb-3" name="phone" id="phone" placeholder="{{__('Teléfono')}}" min="0">
                 <textarea class="form-contact mb-4" name="message" id="message" cols="30" rows="6" placeholder="{{__('Mensaje')}}" maxlength="255"></textarea>
                 <input type="hidden" name="url" value="{{url()->current()}}">
-                <button type="submit" class="btn btn-blue w-100">{{__('Enviar')}}</button>
+                <div class="row justify-content-center">
+                    <button type="submit" class="btn btn-blue col-12 col-lg-6 rounded-4 text-uppercase">{{__('Enviar')}}</button>
+                </div>
             </form>
             @if (session('message'))
                 <div class="fs-5 text-lightblue text-center mt-4">

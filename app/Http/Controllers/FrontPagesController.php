@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Message;
+use App\Models\ConstructionUpdate;
 use App\Mail\NewLead;
 use Illuminate\Support\Facades\Mail;
 
@@ -32,6 +33,13 @@ class FrontPagesController extends Controller
 
         return redirect()->back()->with('message', 'Gracias, su mensaje ha sido enviado');
 
+    }
+
+    public function constructionPage(){
+
+        $updates = ConstructionUpdate::all();
+
+        return view('construction', compact('updates'));
     }
 
 }

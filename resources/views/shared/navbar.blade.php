@@ -29,11 +29,11 @@
             </li>
 
             <li class="nav-item me-1 me-lg-4">
-                <a class="nav-link" href="#">{{__('Construcción')}}</a>
+                <a class="nav-link @if(Route::currentRouteName() == 'construction') active @endif" href="{{route('construction')}}">{{__('Construcción')}}</a>
             </li>
 
             <li class="nav-item me-1 me-lg-4">
-                <a class="nav-link" href="#">{{__('Estilo de Vida')}}</a>
+                <a class="nav-link @if(Route::currentRouteName() == 'lifestyle') active @endif" href="{{route('lifestyle')}}">{{__('Estilo de Vida')}}</a>
             </li>
 
             <li class="nav-item me-1 me-lg-4">
@@ -41,7 +41,7 @@
             </li>
 
             <li class="nav-item me-1 me-lg-4">
-                <a class="nav-link" href="#">{{__('Contacto')}}</a>
+                <a class="nav-link @if(Route::currentRouteName() == 'contact') active @endif" href="{{route('contact')}}">{{__('Contacto')}}</a>
             </li>
 
             <li class="nav-item me-1 me-lg-4">

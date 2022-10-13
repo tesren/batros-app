@@ -1,0 +1,1 @@
+<img{!! $attributeString !!}@if($loadingAttributeValue) loading="{{ $loadingAttributeValue }}"@endif class="w-100 rounded-2 shadow-6" src="{{ $media->getUrl($conversion) }}" alt="{{ $media->name }}">
