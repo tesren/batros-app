@@ -20,6 +20,7 @@
 
     @include('shared.navbar')
     @yield('content')
+    @include('shared.search-modal')
     @include('shared.footer')
 
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>

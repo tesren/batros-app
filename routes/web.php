@@ -26,6 +26,18 @@ Route::get('/estilo-de-vida', function () {
     return view('lifestyle');
 })->name('lifestyle');
 
+Route::get('/nosotros', function () {
+    return view('about');
+})->name('about');
+
+Route::get('/aviso-de-privacidad', function () {
+    return view('privacy-policy');
+})->name('privacy.policy');
+
+Route::get('/amenidades', function () {
+    return view('amenities');
+})->name('amenities');
+
 Route::get('/avances-de-obra', [FrontPagesController::class, 'constructionPage'])->name('construction');
 
 Route::post('/send-message', [FrontPagesController::class, 'sendLeadEmail'])->name('send.email');

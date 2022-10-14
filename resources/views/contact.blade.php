@@ -8,7 +8,7 @@
 @section('content')
 
 <div class="position-relative">
-    <img class="w-100" src="{{asset('img/contact-landing.jpg')}}" alt="Batros Marina Residences" style="height: 90vh; object-fit:cover; object-position:top; z-index:1;">
+    <img class="w-100" src="{{asset('img/rooftop.jpg')}}" alt="Batros Marina Residences" style="height: 90vh; object-fit:cover; object-position:top; z-index:1;">
     <div class="bg-blue-gradient"></div>
 
     <div class="row justify-content-center position-absolute top-0 start-0 w-100 h-100 text-center" style="z-index: 3;">

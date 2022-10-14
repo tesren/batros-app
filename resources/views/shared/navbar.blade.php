@@ -37,7 +37,7 @@
             </li>
 
             <li class="nav-item me-1 me-lg-4">
-                <a class="nav-link" href="#">{{__('Nosotros')}}</a>
+                <a class="nav-link @if(Route::currentRouteName() == 'about') active @endif" href="{{route('about')}}">{{__('Nosotros')}}</a>
             </li>
 
             <li class="nav-item me-1 me-lg-4">
@@ -45,9 +45,9 @@
             </li>
 
             <li class="nav-item me-1 me-lg-4">
-                <a class="nav-link" href="#">
+                <button type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#searchModal">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                </a>
+                </button>
             </li>
 
             <li class="nav-item me-1 me-lg-4 align-self-end align-self-lg-center mt-3 mt-lg-0">

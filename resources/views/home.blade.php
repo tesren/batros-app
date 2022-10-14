@@ -66,7 +66,7 @@
 
         <img width="250px" class="d-none d-lg-block position-absolute start-0" src="{{asset('img/feather.png')}}" alt="" style="z-index: 5; top:60%; transform: scaleX(-1);" loading="lazy">
 
-        <a href="#" class="btn btn-blue">{{__('Conocer más')}}</a>
+        <a href="{{route('amenities')}}" class="btn btn-blue">{{__('Conocer más')}}</a>
 
     </div>
 
@@ -78,7 +78,7 @@
                 <span class="fs-0 text-lightblue">{{__('del Golf')}}</span>
             </h2>
             <p class="text-lighterblue fs-5 fw-light mb-5">{{__('Batros Marina Residences colinda con uno de los campos de golf más célebres del país: Marina Vallarta Club de Golf, un extraordinario campo de 18 hoyos diseñado por el famoso arquitecto estadounidense Joe Finger, enmarcado por abundante naturaleza, lagos y espectaculares vistas a las montañas de la sierra madre y el pacífico.')}}</p>
-            <a href="#" class="btn btn-blue">{{__('Conocer más')}}</a>
+            <a href="{{route('lifestyle')}}" class="btn btn-blue">{{__('Conocer más')}}</a>
         </div>
 
         <div class="col-12 col-lg-4 col-xl-3 position-relative">

@@ -39,7 +39,7 @@
     </div>
 
     <div class="bg-darkblue text-center text-white py-3">
-        <a href="#" class="link-light me-4">{{__('Políticas de Privacidad')}}</a>
+        <a href="{{route('privacy.policy')}}" class="link-light me-4">{{__('Políticas de Privacidad')}}</a>
         <span>Batros Marina Residences © {{date('Y')}}</span>
     </div>
 </footer>
