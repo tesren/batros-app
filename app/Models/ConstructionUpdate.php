@@ -21,7 +21,11 @@ class ConstructionUpdate extends Model implements HasMedia
 
     public function registerMediaConversions(Media $media = null): void
     {
-        $this->addMediaConversion('responsive-conversion')->withResponsiveImages();
+        $this->addMediaConversion('thumb')->width(300);
+
+        $this->addMediaConversion('medium')->width(600);
+        
+        $this->addMediaConversion('large')->width(1280);
     }
 
     public function registerMediaCollections(): void

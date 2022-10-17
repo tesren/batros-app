@@ -10,7 +10,7 @@
         </div>
 
         <div class="modal-body">
-            <form action="" method="get">
+            <form action="{{route('search')}}" method="get">
                 @csrf
             
                 {{-- Precio mínimo y máximo --}}
@@ -19,10 +19,10 @@
                         <label class="fw-light fs-5" for="min_price">{{__('Rango de precios')}}</label>
                     </div>
                     <div class="col-6">
-                        <input type="number" class="form-contact" name="min_price" id="min_price" placeholder="Min." min="0" max="99999999" style="color:#1E4748 !important;" required>
+                        <input type="number" class="form-contact" name="min_price" id="min_price" placeholder="Min." min="0" max="99999999"  required>
                     </div>
                     <div class="col-6">
-                        <input type="number" class="form-contact" name="max_price" id="max_price" placeholder="Max." min="6000000" max="99999999" style="color:#1E4748 !important;" required>
+                        <input type="number" class="form-contact" name="max_price" id="max_price" placeholder="Max." min="6000000" max="99999999"  required>
                     </div>
                 </div>
 
@@ -76,10 +76,10 @@
                         <label class="fw-light fs-5" for="min_const">{{__('Rango de m²')}}</label>
                     </div>
                     <div class="col-6">
-                        <input type="number" class="form-contact" name="min_const" id="min_const" placeholder="Min." min="0" max="500" style="color:#1E4748 !important;">
+                        <input type="number" class="form-contact" name="min_const" id="min_const" placeholder="Min." min="0" max="500" >
                     </div>
                     <div class="col-6">
-                        <input type="number" class="form-contact" name="max_const" id="max_const" placeholder="Max." min="0" max="500" style="color:#1E4748 !important;">
+                        <input type="number" class="form-contact" name="max_const" id="max_const" placeholder="Max." min="0" max="500" >
                     </div>
                 </div>
 

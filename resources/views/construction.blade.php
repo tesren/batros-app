@@ -43,14 +43,14 @@
         @endisset
 
         <div class="col-11 col-lg-7 text-center mb-6 px-0 position-relative">
-            <img class="w-100 rounded-2 shadow-6" src="{{$portrait->getUrl()}}" alt="{{__('Progreso de la obra')}} - {{ date_format($update->date, 'M Y'); }}" data-fancybox="gallery-{{$update->id}}" style="height: 65vh; object-fit:cover;" loading="lazy">
+            <img class="w-100 rounded-2 shadow-6" src="{{$portrait->getUrl('large')}}" alt="{{__('Progreso de la obra')}} - {{ date_format($update->date, 'M Y'); }}" data-fancybox="gallery-{{$update->id}}" style="height: 65vh; object-fit:cover;" loading="lazy">
             <div class="blue-bg text-center d-flex justify-content-center">
                 <a href="#gallery-{{$update->id}}-1" class="btn btn-blue align-self-center px-4" style="z-index: 20;"><i class="fa-regular fa-eye"></i> {{__('Ver')}}</a>
             </div>
         </div>
 
         @foreach ($images as $img)
-            <img src="{{$img->getUrl()}}" alt="{{__('Progreso de la obra')}} - {{ date_format($update->date, 'M Y'); }}" class="d-none" data-fancybox="gallery-{{$update->id}}" loading="lazy">
+            <img src="{{$img->getUrl('large')}}" alt="{{__('Progreso de la obra')}} - {{ date_format($update->date, 'M Y'); }}" class="d-none" data-fancybox="gallery-{{$update->id}}" loading="lazy">
         @endforeach
 
     @endforeach

@@ -48,7 +48,11 @@ class Unit extends Model implements HasMedia
 
     public function registerMediaConversions(Media $media = null): void
     {
-        $this->addMediaConversion('responsive-conversion')->withResponsiveImages();
+        $this->addMediaConversion('thumb')->width(300)->keepOriginalImageFormat();
+
+        $this->addMediaConversion('medium')->width(600)->keepOriginalImageFormat();
+        
+        $this->addMediaConversion('large')->width(1280)->keepOriginalImageFormat();
     }
 
     public function registerMediaCollections(): void

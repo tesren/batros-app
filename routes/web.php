@@ -40,4 +40,8 @@ Route::get('/amenidades', function () {
 
 Route::get('/avances-de-obra', [FrontPagesController::class, 'constructionPage'])->name('construction');
 
+Route::get('/busqueda', [FrontPagesController::class, 'search'])->name('search');
+
+Route::get('/condominio-en-venta/{id}', [FrontPagesController::class, 'unit'])->name('unit');
+
 Route::post('/send-message', [FrontPagesController::class, 'sendLeadEmail'])->name('send.email');

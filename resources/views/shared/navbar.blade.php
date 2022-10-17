@@ -1,4 +1,4 @@
-<nav class="navbar bg-blue navbar-expand-lg py-1 navbar-dark">
+<nav class="navbar bg-blue navbar-expand-lg py-1 navbar-dark shadow-4">
     <div class="container-fluid">
 
       <a class="navbar-brand" href="{{route('home')}}">

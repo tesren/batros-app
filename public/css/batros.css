@@ -180,6 +180,41 @@ h1, h2, h3{
     transition: 0.2s;
 }
 
+/* Paginación */
+.pagination{
+    justify-content: center!important;
+}
+
+.page-link {
+    color: var(--blue);
+    background-color: #fff;
+    border: 1px solid var(--blue);
+}
+
+.page-link:hover {
+    color: #fff;
+    background-color: var(--darkblue);
+    border: 1px solid var(--darkblue);
+}
+
+.page-item.active .page-link {
+    background-color: var(--blue);
+    border-color: var(--darkblue);
+}
+
+.page-item.disabled .page-link {
+    color: var(--blue);
+    background-color: #fff;
+    border-color: var(--blue);
+}
+
+/* Pills */
+
+
+.card{
+    --bs-card-bg: var(--darkblue);
+}
+
 @media (max-width: 992px) {
     .mt-6{
         margin-top: 3.5rem !important;
