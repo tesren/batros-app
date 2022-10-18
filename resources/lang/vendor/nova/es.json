@@ -453,5 +453,6 @@
     "Excel (.xlsx)": "Excel (.xlsx)",
     "Upload New Media" : "Subir imágenes",
     "Add New Media" : "Subir imágenes",
-    "Add Existing Media" : "Seleccionar imágenes ya existentes"
+    "Add Existing Media" : "Seleccionar imágenes ya existentes",
+    "Close" : "Cerrar"
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Message;
 use App\Models\ConstructionUpdate;
 use App\Models\Unit;
+use App\Models\Section;
 use App\Mail\NewLead;
 use Illuminate\Support\Facades\Mail;
 
@@ -47,6 +48,12 @@ class FrontPagesController extends Controller
         $unit = Unit::find($id);
 
         return view('unit', compact('unit'));
+    }
+
+    public function inventory(){
+        $sections = Section::all();
+
+        return view('inventory', compact('sections'));
     }
 
     public function search(Request $request){

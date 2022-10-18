@@ -25,7 +25,7 @@
             </li>
 
             <li class="nav-item me-1 me-lg-4">
-              <a class="nav-link" href="#">{{__('Inventario')}}</a>
+              <a class="nav-link @if(Route::currentRouteName() == 'inventory') active @endif" href="{{route('inventory')}}">{{__('Inventario')}}</a>
             </li>
 
             <li class="nav-item me-1 me-lg-4">
