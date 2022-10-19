@@ -86,7 +86,7 @@ body{
     font-size: 3.5rem;
 }
 
-h1, h2, h3{
+h1, h2, h3, h4{
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -260,6 +260,13 @@ h1, h2, h3{
 .building-vendida:hover{
     fill-opacity: 0.9;
     transition: 0.3s;
+}
+
+.building-blue{
+    fill: var(--blue);
+    fill-opacity: 0.5;
+    stroke: var(--blue);
+    stroke-width: 5px;
 }
 
 @media (max-width: 992px) {

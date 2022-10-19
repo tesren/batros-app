@@ -18,7 +18,7 @@
         @php $i = 1; @endphp
         @foreach ($sections as $section)
             <li class="nav-item" role="presentation">
-                <button class="nav-link @if($i == 2) active @endif" id="pills-{{$section->id}}-tab" data-bs-toggle="pill" data-bs-target="#pills-{{$section->id}}" type="button" role="tab" aria-controls="pills-{{$section->id}}" @if($i == 2) aria-selected="true" @endif>
+                <button class="nav-link @if($i == 1) active @endif" id="pills-{{$section->id}}-tab" data-bs-toggle="pill" data-bs-target="#pills-{{$section->id}}" type="button" role="tab" aria-controls="pills-{{$section->id}}" @if($i == 1) aria-selected="true" @endif>
                     @if (app()->getlocale() == 'es')
                         {{$section->name_es}}
                     @else
@@ -42,7 +42,7 @@
                         $media = $section->getFirstMedia('building_views');
                     @endphp
         
-                    <div class="tab-pane fade @if($j == 2) show active @endif" id="pills-{{$section->id}}" role="tabpanel" aria-labelledby="pills-{{$section->id}}-tab" tabindex="{{$j}}">
+                    <div class="tab-pane fade @if($j == 1) show active @endif" id="pills-{{$section->id}}" role="tabpanel" aria-labelledby="pills-{{$section->id}}-tab" tabindex="{{$j}}">
                         
                         <div class="svg-container">
 
@@ -57,7 +57,7 @@
 
                                         <text x="{{$unit->shape->text_x ?? 0;}}" 
                                             y="{{$unit->shape->text_y ?? 0; }}"
-                                            font-size="54" font-weight="bold" fill="#fff" class="fw-light">
+                                            font-size="50" font-weight="bold" fill="#fff" class="fw-light">
                                             {{$unit->name}}
                                         </text>
                                         

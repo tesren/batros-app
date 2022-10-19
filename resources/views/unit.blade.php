@@ -36,7 +36,13 @@
         <div class="col-12 col-lg-5 align-self-center">
             <h2 class="text-white fs-0"><span class="text-lightblue">{{__('Condominio')}}</span> {{$unit->name}}</h2>
             <h2 class="text-lightblue fs-1 fw-light mb-4">{{__('Area total')}}: {{$unit->area}}m²</h2>
-            <h3 class="bg-light rounded-5 d-inline px-4 fs-0 fw-light" style="color:#1D3F4F;">${{number_format($unit->price)}} {{$unit->currency}}</h3>
+            @if($unit->status == 'Disponible')
+                <h3 class="bg-light rounded-5 d-inline px-4 fs-0 fw-light" style="color:#1D3F4F;">${{number_format($unit->price)}} {{$unit->currency}}</h3>
+            @elseif ($unit->status == 'Apartada')
+                <h3 class="bg-warning rounded-5 d-inline px-4 fs-0 fw-light" style="color:#1D3F4F;">{{__('Apartado')}}</h3>
+            @else
+                <h3 class="bg-danger rounded-5 d-inline px-4 fs-0 fw-light" style="color:#1D3F4F;">{{__('Vendido')}}</h3>
+            @endif
         </div>
         
         <div class="col-12 col-lg-5">
@@ -109,7 +115,7 @@
 
     <h4 class="mb-5 text-center text-lightblue fs-1 pt-5">{{__('Ubicación en torre y en Planta del Condominio')}}</h4>
     
-    <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+    <ul class="nav nav-pills mb-4 justify-content-center" id="pills-tab" role="tablist">
 
         <li class="nav-item" role="presentation">
           <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">{{__('Torre')}}</button>
@@ -121,12 +127,127 @@
         
     </ul>
 
-    <div class="tab-content" id="pills-tabContent">
+    @php
+        $floor = $unit->getFirstMedia('floor');
+        $view = $unit->section;
+        $viewImg = $view->getFirstMedia('building_views');
+    @endphp
+
+    <div class="tab-content mb-6" id="pills-tabContent">
+
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-            
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-7">
+                    <div class="svg-container">
+                        <img src="{{$viewImg->getUrl()}}" alt="{{__('Condominio')}} {{$unit->name}} {{__('Ubicación en Torre')}}" class="w-100">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-content" viewBox="0 0 1920 1080">
+                            <polygon class="building-blue" points="{{ $unit->shape->points ?? '0,0'}}"></polygon>
+
+                            <text x="{{$unit->shape->text_x ?? 0;}}" 
+                                y="{{$unit->shape->text_y ?? 0; }}"
+                                font-size="50" font-weight="bold" fill="#fff" class="fw-light">
+                                {{$unit->name}}
+                            </text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">...</div>
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-7">
+                    <div class="svg-container">
+                        <img src="{{$floor->getUrl()}}" srcset="{{$floor->getUrl('thumb')}} 320w, {{$floor->getUrl('medium')}} 800w, {{$floor->getUrl('large')}} 1200w"
+                        alt="{{__('Condominio')}} {{$unit->name}} {{__('Ubicación en planta')}}" class="w-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-content" viewBox="0 0 1920 1080">
+                            
+                            @if($unit->floor == 1)
+                                <text x="1600" y="300"
+                                    font-size="80" font-weight="bold" fill="#1D3F4F" class="fw-light">
+                                    A{{$unit->floor}}
+                                </text>
+                                <text x="950" y="300"
+                                    font-size="80" font-weight="bold" fill="#1D3F4F" class="fw-light">
+                                    B{{$unit->floor}}
+                                </text>
+                                <text x="530" y="300"
+                                    font-size="80" font-weight="bold" fill="#1D3F4F" class="fw-light">
+                                    C{{$unit->floor}}
+                                </text>
+                                <text x="530" y="750"
+                                    font-size="80" font-weight="bold" fill="#1D3F4F" class="fw-light">
+                                    D{{$unit->floor}}
+                                </text>
+                                <text x="1100" y="750"
+                                    font-size="80" font-weight="bold" fill="#1D3F4F" class="fw-light">
+                                    E{{$unit->floor}}
+                                </text>
+                            @else
+                                <text x="1600" y="300"
+                                    font-size="80" font-weight="bold" fill="#1D3F4F" class="fw-light">
+                                    A{{$unit->floor}}
+                                </text>
+                                <text x="850" y="300"
+                                    font-size="80" font-weight="bold" fill="#1D3F4F" class="fw-light">
+                                    B{{$unit->floor}}
+                                </text>
+                                <text x="330" y="300"
+                                    font-size="80" font-weight="bold" fill="#1D3F4F" class="fw-light">
+                                    C{{$unit->floor}}
+                                </text>
+                                <text x="330" y="850"
+                                    font-size="80" font-weight="bold" fill="#1D3F4F" class="fw-light">
+                                    D{{$unit->floor}}
+                                </text>
+                                <text x="800" y="850"
+                                    font-size="80" font-weight="bold" fill="#1D3F4F" class="fw-light">
+                                    E{{$unit->floor}}
+                                </text>
+                                <text x="1140" y="850"
+                                    font-size="80" font-weight="bold" fill="#1D3F4F" class="fw-light">
+                                    F{{$unit->floor}}
+                                </text>
+                            @endif
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <h4 class="mb-5 text-center text-lightblue fs-1 pt-5">{{__('Planos del Condominio')}}</h4>
+    @php
+        $blueprint = $unit->getFirstMedia('blueprint');
+    @endphp
+    <div class="row justify-content-center mb-6">
+        <div class="col-12 col-lg-8 col-xl-7">
+
+        </div>
+    </div>
+
+    <h4 class="mb-5 text-center text-lightblue fs-1 pt-5">{{__('Planes de Pago')}}</h4>
+
+    <ul class="nav nav-pills mb-4 justify-content-center" id="pills-tab" role="tablist">
+
+        @php
+            $k = 1;
+        @endphp
+
+        @foreach ($unit->paymentPlans as $plan)
+            <li class="nav-item" role="presentation">
+                <button class="fs-4 nav-link @if($k == 1) active me-3 @endif" id="pills-plan-nav-{{$plan->id}}" data-bs-toggle="pill" data-bs-target="#pills-plan-tab-{{$plan->id}}" type="button" role="tab" @if($k == 1)aria-selected="true" @endif>
+                    {{$plan->name}}
+                </button>
+            </li>
+            @php $k++; @endphp
+        @endforeach
+    </ul>
+
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">...</div>
     </div>
 
 @endsection
