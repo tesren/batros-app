@@ -20,28 +20,32 @@
 
           <ul class="navbar-nav justify-content-end flex-grow-1 text-end text-lg-start">
 
+            @php
+              $route = Route::currentRouteName();
+            @endphp
+
             <li class="nav-item me-1 me-lg-4">
-              <a class="nav-link @if(Route::currentRouteName() == 'home') active @endif" href="{{route('home')}}">{{__('Inicio')}}</a>
+              <a class="nav-link @if($route == 'es.home' or $route == 'en.home') active @endif" href="{{route('home')}}">{{__('Inicio')}}</a>
             </li>
 
             <li class="nav-item me-1 me-lg-4">
-              <a class="nav-link @if(Route::currentRouteName() == 'inventory') active @endif" href="{{route('inventory')}}">{{__('Inventario')}}</a>
+              <a class="nav-link @if($route == 'es.inventory' or $route == 'en.inventory') active @endif" href="{{route('inventory')}}">{{__('Inventario')}}</a>
             </li>
 
             <li class="nav-item me-1 me-lg-4">
-                <a class="nav-link @if(Route::currentRouteName() == 'construction') active @endif" href="{{route('construction')}}">{{__('Construcción')}}</a>
+                <a class="nav-link @if($route == 'es.construction' or $route == 'en.construction') active @endif" href="{{route('construction')}}">{{__('Construcción')}}</a>
             </li>
 
             <li class="nav-item me-1 me-lg-4">
-                <a class="nav-link @if(Route::currentRouteName() == 'lifestyle') active @endif" href="{{route('lifestyle')}}">{{__('Estilo de Vida')}}</a>
+                <a class="nav-link @if($route == 'es.lifestyle' or $route == 'en.lifestyle') active @endif" href="{{route('lifestyle')}}">{{__('Estilo de Vida')}}</a>
             </li>
 
             <li class="nav-item me-1 me-lg-4">
-                <a class="nav-link @if(Route::currentRouteName() == 'about') active @endif" href="{{route('about')}}">{{__('Nosotros')}}</a>
+                <a class="nav-link @if($route == 'es.about' or $route == 'en.about') active @endif" href="{{route('about')}}">{{__('Nosotros')}}</a>
             </li>
 
             <li class="nav-item me-1 me-lg-4">
-                <a class="nav-link @if(Route::currentRouteName() == 'contact') active @endif" href="{{route('contact')}}">{{__('Contacto')}}</a>
+                <a class="nav-link @if($route == 'es.contact' or $route == 'en.contact') active @endif" href="{{route('contact')}}">{{__('Contacto')}}</a>
             </li>
 
             <li class="nav-item me-1 me-lg-4">
@@ -51,7 +55,29 @@
             </li>
 
             <li class="nav-item me-1 me-lg-4 align-self-end align-self-lg-center mt-3 mt-lg-0">
-                <a class="link-dark text-decoration-none rounded-circle bg-light p-2" href="#">{{__('ES')}}</a>
+
+              @if (app()->getLocale() == 'es')
+
+                @if($route == 'es.unit')
+                  <a class="link-dark text-decoration-none rounded-circle bg-light p-2" href="{{$url = route('unit', ['id'=>$unit->id], true, 'en');}}">{{__('EN')}}</a>
+                @elseif($route == 'es.search')
+                  <a class="link-dark text-decoration-none rounded-circle bg-light p-2" href="{{$url = route('search', request()->query(), true, 'en'); }}">{{__('EN')}}</a>
+                @else
+                  <a class="link-dark text-decoration-none rounded-circle bg-light p-2" href="{{$url = route($route, [], true, 'en');}}">{{__('EN')}}</a>
+                @endif
+
+              @else
+
+                @if($route == 'en.unit')
+                  <a class="link-dark text-decoration-none rounded-circle bg-light p-2" href="{{$url = route('unit', ['id'=>$unit->id], true, 'es');}}">{{__('ES')}}</a>
+                @elseif($route == 'en.search')
+                  <a class="link-dark text-decoration-none rounded-circle bg-light p-2" href="{{$url = route('search', request()->query(), true, 'es'); }}">{{__('ES')}}</a>
+                @else
+                  <a class="link-dark text-decoration-none rounded-circle bg-light p-2" href="{{$url = route($route, [], true, 'es');}}">{{__('ES')}}</a>
+                @endif
+
+              @endif
+
             </li>
             
           </ul>

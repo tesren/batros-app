@@ -2,7 +2,7 @@
 
 @section('titles')
     <title>Batros Marina Residences - {{__('Inventario de Condominios en venta')}}</title>
-    <meta name="description" content="Haz clic en cualquiera de nuestros condominios en venta disponibles para ver mas detalles y escoge el más adecuado a tus gustos y necesidades">
+    <meta name="description" content="{{__('Haz clic en cualquiera de nuestros condominios en venta disponibles para ver mas detalles y escoge el más adecuado a tus gustos y necesidades')}}">
 @endsection
 
 @section('content')

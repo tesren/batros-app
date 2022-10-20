@@ -69,6 +69,7 @@ class ConstructionUpdate extends Resource
             ID::make()->sortable(),
             Date::make('Fecha de la Actualización', 'date')->required()->sortable(),
             Text::make('Descripción', 'description')->help('Pequeña descripción de lo que se hizo en la obra de construcción')->nullable(),
+            Text::make('Description', 'description_en')->help('Pequeña descripción de lo que se hizo en la obra de construcción en INGLÉS')->nullable(),
 
             new Panel('Imágenes', $this->imageFields()),
         ];

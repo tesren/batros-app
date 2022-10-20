@@ -2,7 +2,7 @@
 
 @section('titles')
     <title>Batros Marina Residences - {{__('Preventa de condominios de lujo en Marina Vallarta')}}</title>
-    <meta name="description" content="{{__('Batros Marina Residences, el proyecto consta de tan solo 35 unidades de lujo, con modelos de 1, 2 y 3 recámaras distribuidas en 6 niveles de departamentos y una terraza con las mejores amenidades')}}">
+    <meta name="description" content="{{__('Batros Marina Residences consta de tan solo 35 condominios de lujo, con modelos de 1, 2 y 3 recámaras distribuidas en 6 niveles de departamentos y una terraza con las mejores amenidades')}}">
 @endsection
 
 @section('content')
@@ -39,16 +39,16 @@
 
     {{-- Amenidades --}}
     <div class="mb-6 position-relative text-center py-5">
-        <h2 class="text-lightblue fs-1 text-center fw-light mb-5">{{_('Amenidades')}}</h2>
+        <h2 class="text-lightblue fs-1 text-center fw-light mb-5">{{__('Amenidades')}}</h2>
 
         <div class="row justify-content-center text-lightblue mb-5">
             <div class="col-6 col-xl-2">
-                <img src="{{asset('img/amenities/rooftop.png')}}" alt="{{__('Rooftop 360')}}" class="col-12 col-lg-9" loading="lazy">
-                <div class="fs-3 fw-light">{{__('Terraza 360°')}}</div>
+                <img src="{{asset('img/amenities/rooftop.png')}}" alt="{{__('Terraza 360')}}" class="col-12 col-lg-9" loading="lazy">
+                <div class="fs-3 fw-light">{{__('Terraza 360')}}°</div>
             </div>
             <div class="col-6 col-xl-2">
-                <img src="{{asset('img/amenities/bbq.png')}}" alt="{{__('Asador & Bar')}}" class="col-12 col-lg-9" loading="lazy">
-                <div class="fs-3 fw-light">{{__('Asador & Bar')}}</div>
+                <img src="{{asset('img/amenities/bbq.png')}}" alt="{{__('Asador y Bar')}}" class="col-12 col-lg-9" loading="lazy">
+                <div class="fs-3 fw-light">{{__('Asador y Bar')}}</div>
             </div>
             <div class="col-6 col-xl-2">
                 <img src="{{asset('img/amenities/lounge.png')}}" alt="{{__('Mindfulness Lounge')}}" class="col-12 col-lg-9" loading="lazy">

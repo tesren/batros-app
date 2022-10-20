@@ -29,15 +29,15 @@
                     <img src="{{$portrait}}" alt="{{__('Unidad')}} {{$unit->name}}" class="card-img-top w-100">
 
                     <div class="card-body">
-                    <h3 class="card-title fs-2">{{__('Unidad')}} {{$unit->name}}</h3>
-            
-                    <div class="card-text mb-3 fs-5 fw-light">
-                        <i class="fa-solid fa-bed"></i> {{$unit->bedrooms}}
-                        <i class="ms-3 fa-solid fa-shower"></i> {{$unit->bathrooms}} 
-                        <i class="ms-3 fa-solid fa-ruler-combined"></i> {{$unit->area}} m²
-                    </div>
+                        <h3 class="card-title fs-2">{{__('Unidad')}} {{$unit->name}}</h3>
+                
+                        <div class="card-text mb-3 fs-5 fw-light">
+                            <i class="fa-solid fa-bed"></i> {{$unit->bedrooms}}
+                            <i class="ms-3 fa-solid fa-shower"></i> {{$unit->bathrooms}} 
+                            <i class="ms-3 fa-solid fa-ruler-combined"></i> {{$unit->area}} m²
+                        </div>
 
-                    <a href="#" class="btn btn-blue w-100">{{__('Ver más')}}</a>
+                        <a href="{{route('unit', ['id' => $unit->id])}}" class="btn btn-blue w-100">{{__('Ver más')}}</a>
                     </div>
                 </div>
             </div>
@@ -77,15 +77,15 @@
                     <img src="{{$portrait}}" alt="{{__('Unidad')}} {{$unit->name}}" class="card-img-top w-100">
 
                     <div class="card-body">
-                    <h3 class="card-title fs-2">{{__('Unidad')}} {{$unit->name}}</h3>
-            
-                    <div class="card-text mb-3 fs-5 fw-light">
-                        <i class="fa-solid fa-bed"></i> {{$unit->bedrooms}}
-                        <i class="ms-3 fa-solid fa-shower"></i> {{$unit->bathrooms}} 
-                        <i class="ms-3 fa-solid fa-ruler-combined"></i> {{$unit->area}} m²
-                    </div>
+                        <h3 class="card-title fs-2">{{__('Unidad')}} {{$unit->name}}</h3>
+                
+                        <div class="card-text mb-3 fs-5 fw-light">
+                            <i class="fa-solid fa-bed"></i> {{$unit->bedrooms}}
+                            <i class="ms-3 fa-solid fa-shower"></i> {{$unit->bathrooms}} 
+                            <i class="ms-3 fa-solid fa-ruler-combined"></i> {{$unit->area}} m²
+                        </div>
 
-                    <a href="#" class="btn btn-blue w-100">{{__('Ver más')}}</a>
+                        <a href="{{route('unit', ['id' => $unit->id])}}" class="btn btn-blue w-100">{{__('Ver más')}}</a>
                     </div>
                 </div>
             </div>

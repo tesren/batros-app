@@ -2,7 +2,7 @@
 
 @section('titles')
     <title>Batros Marina Residences - {{__('Avances de Obra')}}</title>
-    <meta name="description" content="{{__('Aquí podrás consultar el progreso de construcción de Batros Marina Residences.')}}">
+    <meta name="description" content="{{__('Aquí podrás consultar el progreso de construcción de Batros Marina Residences a través del tiempo.')}}">
 @endsection
 
 @section('content')
@@ -39,7 +39,11 @@
 
         <h3 class="fs-2 text-lightblue mb-3 text-center">{{__('Progreso de la obra')}} - {{ date_format($update->date, 'M Y'); }}</h3>
         @isset($update->description)
-            <p class="fs-5 fw-light text-center text-white">{{$update->description}}</p>
+            @if (app()->getLocale() == 'es')
+                <p class="fs-5 fw-light text-center text-white">{{$update->description}}</p>
+            @else
+                <p class="fs-5 fw-light text-center text-white">{{$update->description_en}}</p>         
+            @endif
         @endisset
 
         <div class="col-11 col-lg-7 text-center mb-6 px-0 position-relative">

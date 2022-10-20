@@ -25,7 +25,7 @@
     </div>
 
     <h2 class="text-center my-5 fw-light" id="info">
-        <span class="text-white fs-1">{{__('Descubre por por qué')}}</span> <br>
+        <span class="text-white fs-1">{{__('Descubre por qué')}}</span> <br>
         <span class="text-lightblue fs-0">Batros Marina Residences</span> <br>
         <span class="text-white fs-1">{{__('es tu mejor opción')}}</span>
     </h2>

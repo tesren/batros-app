@@ -50,7 +50,7 @@
         <div class="col-11 col-lg-3 d-block d-lg-flex mb-5">
             <div>
                 <h3 class="text-lightblue fs-2">2000</h3>
-                <p class="text-white fs-5">{{__('Condominio “Corazón del Fresno” Guadalajara Jal.')}}</p>
+                <p class="text-white fs-5">{{__('Condominio')}} “Corazón del Fresno” Guadalajara Jal.</p>
             </div>
             
             <div class="fs-3 align-self-center"><img class="mx-3 d-none d-lg-flex" width="100px" src="{{asset('img/dots.png')}}" alt=""></div>
@@ -62,7 +62,7 @@
         <div class="col-11 col-lg-3 d-block d-lg-flex mb-5">
             <div>
                 <h3 class="text-lightblue fs-2">2001</h3>
-                <p class="text-white fs-5">{{__('Condominio “San Ángel” Guadalajara Jal.')}}</p>
+                <p class="text-white fs-5">{{__('Condominio')}} “San Ángel” Guadalajara Jal.</p>
             </div>
             
             <div class="fs-3 align-self-center"><img class="mx-3 d-none d-lg-flex" width="100px" src="{{asset('img/dots.png')}}" alt=""></div>
@@ -73,7 +73,7 @@
         <div class="col-11 col-lg-3 d-block d-lg-flex mb-5">
             <div>
                 <h3 class="text-lightblue fs-2">2002 - 2003</h3>
-                <p class="text-white fs-5">{{__('Condominio “Pueblo Bonito” Zapopan Jal.')}}</p>
+                <p class="text-white fs-5">{{__('Condominio')}} “Pueblo Bonito” Zapopan Jal.</p>
             </div>
             
             <div class="fs-3 align-self-center"><img class="mx-3 d-none d-lg-flex" width="100px" src="{{asset('img/dots.png')}}" alt=""></div>
@@ -83,7 +83,7 @@
 
         <div class="col-11 col-lg-2 mb-0 mb-lg-5 position-relative">
             <h3 class="text-lightblue fs-2">2005</h3>
-            <p class="text-white fs-5">{{__('Plaza Comercial “Marina Vallarta” Puerto Vallarta Jal.')}}</p>
+            <p class="text-white fs-5">{{__('Plaza Comercial')}} “Marina Vallarta” Puerto Vallarta Jal.</p>
             
             <img class="d-none d-lg-block position-absolute top-100 start-50" height="100px" src="{{asset('img/dots-vertical.png')}}" alt="">
             <div class="fs-3 align-self-center"><img class="d-block d-lg-none mx-auto" height="100px" src="{{asset('img/dots-vertical.png')}}" alt=""></div>
@@ -97,7 +97,7 @@
         <div class="col-11 col-lg-3 d-block d-lg-flex mb-5 order-4 order-lg-1">
             <div>
                 <h3 class="text-lightblue fs-2">2011 - 2012</h3>
-                <p class="text-white fs-5">{{__('Plaza Comercial “Quinta Avenida” Zapopan Jal.')}}</p>
+                <p class="text-white fs-5">{{__('Plaza Comercial')}} “Quinta Avenida” Zapopan Jal.</p>
             </div>
             
             <div class="fs-3 align-self-center"><img class="mx-3 d-none d-lg-flex" width="100px" style="transform: scaleX(-1);" src="{{asset('img/dots.png')}}" alt=""></div>
@@ -107,7 +107,7 @@
         <div class="col-11 col-lg-3 d-block d-lg-flex mb-5 order-3 order-lg-2">
             <div>
                 <h3 class="text-lightblue fs-2">2009</h3>
-                <p class="text-white fs-5">{{__('Condominio vertical “Galileo Galilei” Tonalá Jal.')}}</p>
+                <p class="text-white fs-5">{{__('Condominio vertical')}} “Galileo Galilei” Tonalá Jal.</p>
             </div>
             
             <div class="fs-3 align-self-center"><img class="mx-3 d-none d-lg-flex" width="100px" style="transform: scaleX(-1);" src="{{asset('img/dots.png')}}" alt=""></div>
@@ -118,7 +118,7 @@
         <div class="col-11 col-lg-3 d-block d-lg-flex mb-5 order-2 order-lg-3">
             <div>
                 <h3 class="text-lightblue fs-2">2007 - 2008</h3>
-                <p class="text-white fs-5">{{__('Condominio “El Sausalito” Zapopan Jal.')}}</p>
+                <p class="text-white fs-5">{{__('Condominio')}} “El Sausalito” Zapopan Jal.</p>
             </div>
             
             <div class="fs-3 align-self-center"><img class="mx-3 d-none d-lg-flex" width="100px" style="transform: scaleX(-1);" src="{{asset('img/dots.png')}}" alt=""></div>
@@ -129,7 +129,7 @@
         <div class="col-11 col-lg-2 d-block d-lg-flex mb-5 order-1 order-lg-4">
             <div>
                 <h3 class="text-lightblue fs-2">2006</h3>
-                <p class="text-white fs-5">{{__('Condominio “Laurel de la India” Zapopan Jal.')}}</p>
+                <p class="text-white fs-5">{{__('Condominio')}} “Laurel de la India” Zapopan Jal.</p>
             </div>
 
             <div class="fs-3 align-self-center"><img class="d-block d-lg-none mx-auto" height="100px" src="{{asset('img/dots-vertical.png')}}" alt=""></div>

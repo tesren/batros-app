@@ -20,6 +20,14 @@ body{
     background-color: var(--blue) !important;
 }
 
+.bg-lightblue{
+    background-color: var(--lightblue) !important;
+}
+
+.text-blue{
+    color: var(--blue);
+}
+
 .shadow-4 {
     box-shadow: 0 2px 4px -1px #0003,0 4px 5px #00000024,0 1px 10px #0000001f;
 }
@@ -269,6 +277,15 @@ h1, h2, h3, h4{
     stroke-width: 5px;
 }
 
+/* Unit page */
+.plan-title{
+    background-color: var(--darkblue);
+    border-radius: 50%;
+    height: 55px;
+    width: 55px;
+    line-height: 1.3;
+}
+
 @media (max-width: 992px) {
     .mt-6{
         margin-top: 3.5rem !important;
@@ -290,5 +307,12 @@ h1, h2, h3, h4{
     .svg-container .fa-location-dot{
         color: #899CA0;
         font-size: 15px;
+    }
+
+    /* Unit page */
+    .plan-title{
+        height: 37px;
+        width: 37px;
+        line-height: 1.3;
     }
 }

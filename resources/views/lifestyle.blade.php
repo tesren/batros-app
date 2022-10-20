@@ -13,7 +13,7 @@
 
     <div class="row justify-content-center position-absolute top-0 start-0 w-100 h-100 text-center" style="z-index: 3;">
         <div class="col-12 align-self-center">
-            <h1 class="fs-0 text-white text-uppercase fw-light">{{__('Estilo de vida')}}</h1>
+            <h1 class="fs-0 text-white text-uppercase fw-light">{{__('Estilo de Vida')}}</h1>
         </div>
     </div>
 
@@ -46,8 +46,8 @@
 
 <h2 class="text-center mb-5">
     <span class="text-white fs-1">{{__('A sólo')}}</span> <br>
-    <span class="text-lightblue fs-0">{{__('5 min')}}</span>
-    <span class="text-white fs-1">{{__('de ti')}}</span>
+    <span class="text-lightblue fs-0">{{__('5 minutos')}}</span>
+    <span class="text-white fs-1">{{__('de ti ')}}</span>
 </h2>
 
 <div class="row justify-content-center position-relative mb-6">
