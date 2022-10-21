@@ -17,6 +17,9 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Menu\MenuSection;
 use Illuminate\Support\Facades\Blade;
 use App\Nova\ConstructionUpdate;
+use Laravel\Nova\Menu\MenuItem;
+use Laravel\Nova\Menu\Menu;
+
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -44,6 +47,15 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 MenuSection::resource(User::class)->icon('user'),
 
             ];
+        });
+
+        Nova::userMenu(function (Request $request, Menu $menu) {
+            
+            $menu->append(
+                MenuItem::externalLink('Ver Sitio Web', url('/')),
+            );
+
+            return $menu;
         });
 
         Nova::footer(function ($request) {

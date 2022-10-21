@@ -2,7 +2,7 @@
 
 @section('titles')
     <title>Batros Marina Residences - {{__('Condominio')}} {{$unit->name}}</title>
-    <meta name="description" content="{{__('Condominio')}} {{$unit->name}} {{__('en venta en Marina Vallarta, con')}} {{$unit->bedrooms}} {{__('Recámaras')}} & {{$unit->bathrooms}} {{__('Baños')}}. {{__('en Batros Marina Residences a un lado del campo de Golf.')}}">
+    <meta name="description" content="{{__('Condominio')}} {{$unit->name}} {{__('en venta en Marina Vallarta, con')}} {{$unit->bedrooms}} {{__('Recámaras')}} & {{$unit->bathrooms}} {{__('Baños')}}. {{__('En Batros Marina Residences a un lado del campo de Golf.')}}">
 @endsection
 
 @section('content')
@@ -305,9 +305,9 @@
                                 <div class="text-end">${{ number_format($enganche, 2) }} {{$unit->currency}}</div>
                             </div>
 
-                            <div class="d-flex justify-content-between mb-3 px-1 px-lg-3">
+                            <div class="d-flex justify-content-between mb-3 px-1 px-lg-3 fs-5">
                                 <div>{{$plan->months_percent}}% {{__('en')}} {{$plan->months_quantity}} {{__('Meses')}}</div>
-                                <div class="text-end">${{ number_format($meses, 2) }} {{$unit->currency}} 
+                                <div class="text-end fs-4">${{ number_format($meses, 2) }} {{$unit->currency}} 
                                     <div class="fs-6">${{number_format($mes,2)}} {{__('por mes')}}</div> 
                                 </div>
                             </div>
