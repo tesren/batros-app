@@ -83,7 +83,7 @@
 
         <div class="col-12 col-lg-4 col-xl-3 position-relative">
             <img src="{{asset('img/golf.jpg')}}" alt="Golf Marina Vallarta" class="w-100 rounded-2 shadow-6 position-relative" style="z-index:5;" loading="lazy">
-            <img width="250px" class="d-none d-lg-block position-absolute top-0" src="{{asset('img/feather.png')}}" alt="" style="z-index: 1; left:75%; transform: rotate(180deg);" loading="lazy">
+            <img width="230px" class="d-none d-lg-block position-absolute top-0" src="{{asset('img/feather.png')}}" alt="" style="z-index: 1; left:75%; transform: rotate(180deg);" loading="lazy">
         </div>
 
     </div>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @yield('titles')
-    <meta name="theme-color" content="#1D3F4F">
+    @include('shared.favicon')
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/fancybox.css')}}">
@@ -16,12 +16,13 @@
     <link rel="stylesheet" href="{{asset('css/batros.css')}}">
 </head>
 
-<body>
+<body class="position-relative">
 
     @include('shared.navbar')
     @yield('content')
     @include('shared.search-modal')
     @include('shared.footer')
+    @include('shared.contact-buttons')
 
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('js/fontawesome.min.js')}}" async></script>

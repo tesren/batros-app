@@ -239,7 +239,7 @@
 
 
     @if ($unit->status == 'Disponible')
-        <h4 class="mb-5 text-center text-lightblue fs-1 pt-5">{{__('Planes de Pago')}}</h4>
+        <h4 class="mb-5 text-center text-lightblue fs-1 pt-5" id="plans">{{__('Planes de Pago')}}</h4>
 
         <ul class="nav nav-pills mb-4 justify-content-center" id="pills-tab" role="tablist">
 
@@ -314,6 +314,38 @@
 
                         </div>
 
+                        <div class="w-100"></div>
+
+                        <div class="col-12 col-lg-3 text-center mt-3">
+                            <button type="button" class="btn btn-blue" data-bs-toggle="modal" data-bs-target="#pdfModal-{{$plan->id}}">
+                                <i class="fa-solid fa-download"></i> {{__('Descargar PDF')}}
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Modal PDF -->
+                <div class="modal fade" id="pdfModal-{{$plan->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content bg-blue text-white">
+                        <div class="modal-header">
+                            <h5 class="modal-title fs-5 fw-light" id="exampleModalLabel">{{__('Descargar PDF')}}</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="fs-6 fw-light">{{__('Déjanos tu nombre y correo para enviarte el PDF a tu correo electrónico')}}</div>
+                            <form action="{{route('send.email')}}#plans" method="post" class="mt-4">
+                                @csrf
+                                <input type="text" class="form-contact mb-3" name="name" id="name" placeholder="{{__('Nombre')}}" required maxlength="255">
+                                <input type="email" class="form-contact" name="email" id="email" placeholder="{{__('Correo')}}" required maxlength="255">
+                                <input type="hidden" name="url" value="{{url()->current()}}">
+                                <input type="hidden" name="plan_id" value="{{$plan->id}}">
+                                <input type="hidden" name="unit_id" value="{{$unit->id}}">
+                                <button type="submit" class="btn btn-blue w-100 mt-5 rounded-4 text-uppercase">{{__('Enviar')}}</button>
+                            </form>
+                        </div>
+                    </div>
                     </div>
                 </div>
 
@@ -321,6 +353,12 @@
             @endforeach
 
         </div>
+
+        @if(session('message'))
+            <div class="text-center text-white fs-2 mb-6">
+                <i class="fa-regular fa-circle-check"></i> {{__(session('message'))}}
+            </div>
+        @endif
 
     @endif
 

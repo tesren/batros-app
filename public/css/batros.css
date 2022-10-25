@@ -123,6 +123,21 @@ h1, h2, h3, h4{
     appearance: none;
 }
 
+.whatsapp{
+    width: 60px;
+    height: 60px;
+    background-color: var(--lightblue);
+    color: var(--blue);
+    line-height: 1.3;
+    transition: 0.2s;
+}
+
+.whatsapp:hover{
+    color: var(--lightblue);
+    background-color: var(--darkblue);
+    transition: 0.3s;
+}
+
 /* Formulario de contacto */
 .form-contact{
     background-color: transparent;

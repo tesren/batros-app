@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class NewLead extends Mailable
+class PdfRequest extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,6 +30,6 @@ class NewLead extends Mailable
      */
     public function build()
     {
-        return $this->subject('Mensaje desde el sitio web de Batros')->view('emails.lead-email');
+        return $this->subject('Mensaje desde el sitio web de Batros')->view('emails.pdf-email');
     }
 }

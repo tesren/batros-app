@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Message;
 use App\Models\ConstructionUpdate;
 use App\Models\Unit;
+use App\Models\PaymentPlan;
 use App\Models\Section;
 use App\Mail\NewLead;
 use Illuminate\Support\Facades\Mail;
-
+use App\Mail\PdfRequest;
 
 class FrontPagesController extends Controller
 {
@@ -26,14 +27,71 @@ class FrontPagesController extends Controller
 
         $msg->save();
 
-        $email = Mail::to('erick@punto401.com');
+        $email = Mail::to('info@c21oceanrealty.com');
 
-        //$email->bcc('erick@punto401.com');
+        $email->cc('michelena@punto401.com');
+        $email->bcc('erick@punto401.com');
         
         $email->send(new NewLead($msg));
         
 
         return redirect()->back()->with('message', 'Gracias, su mensaje ha sido enviado');
+
+    }
+
+    public function sendPdfEmail(Request $request){
+        
+        $unit_id = $request->input('unit_id');
+        $plan_id = $request->input('plan_id');
+
+        $unit = Unit::find($unit_id);
+        $plan = PaymentPlan::find($plan_id);
+        
+        $msg = new Message();
+
+        $msg->name = $request->input('name');
+        $msg->email = $request->input('email');
+        $msg->content = 'El cliente solicitó descargar el PDF del plan '.$plan->name.' desde la unidad '.$unit->name;
+        $msg->url = $request->input('url');
+
+        $msg->save();
+
+        $email = Mail::to('info@c21oceanrealty.com');
+
+        $email->cc('michelena@punto401.com');
+        $email->bcc('erick@punto401.com');
+        
+        $email->send(new PdfRequest($msg));
+
+
+        //creamos y guardamos PDF
+
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+        $pdf->setPaper('A4', 'landscape');
+
+
+        $pdf->loadView('shared.plan-pdf', compact('unit', 'plan'));
+        
+
+        $id = uniqid();
+        $path = '/storage/PDFs/'. $id .'.pdf';
+        $publicPath = public_path($path);
+        $pdf->save($publicPath);
+
+        //Mail para el cliente con el link
+        $to = $msg->email;
+        $subject = 'Batros -  Descarga tu PDF';
+
+        $headers = 'From: webmaster@batrosvallarta.com' . "\r\n";
+        $headers .= 'Bcc: erick@punto401.com' . "\r\n";
+
+        $body = 'Para obtener el PDF de tu cotización por favor da clic en el siguiente enlace'."\r\n";
+        $body .= url($path)."\r\n";
+        
+        mail($to, $subject, $body, $headers);
+        
+
+        return redirect()->back()->with('message', 'Gracias, revisa tu correo para obtener tu PDF');
 
     }
 
@@ -67,6 +125,8 @@ class FrontPagesController extends Controller
         $min_const =  $request->input('min_const');
         $max_const =  $request->input('max_const');
 
+        $price_order =  $request->input('price_order');
+
         $bedrooms = $request->input('bedrooms');
 
         $units = Unit::where('status', 'Disponible');
@@ -90,6 +150,10 @@ class FrontPagesController extends Controller
 
         if(isset($bedrooms)){
             $units = $units->where('bedrooms', $bedrooms);
+        }
+
+        if(isset($price_order)){
+            $units = $units->orderBy('price', $price_order);
         }
 
         $units = $units->paginate(9)->appends(request()->query());
