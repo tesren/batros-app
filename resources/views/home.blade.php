@@ -32,7 +32,7 @@
 
         <div class="col-12 col-lg-10 col-xl-6 text-center">
             <p class="fw-light text-lighterblue fs-5">{{__('Batros Marina Residences está inspirado en la arquitectura mexicana contemporánea. El diseño elegante y atemporal da como resultado un edificio sobrio y elegante, de colores neutrales, que se integra de manera armónica a su entorno en donde sus habitantes se sentirán realmente en casa.')}}</p>
-            <a href="#" class="btn btn-blue">{{__('Ver Inventario')}}</a>
+            <a href="{{route('inventory')}}" class="btn btn-blue">{{__('Ver Inventario')}}</a>
         </div>
 
     </div>

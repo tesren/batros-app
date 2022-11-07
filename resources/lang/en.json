@@ -260,5 +260,6 @@
     "Ordenar precio" : "Order by Price",
     "Menor a mayor" : "Lowest to Highest",
     "Mayor a menor" : "Highest to Lowest",
-    "Gracias, su mensaje ha sido enviado": "Thank you, your message has been sent"
+    "Gracias, su mensaje ha sido enviado": "Thank you, your message has been sent",
+    "Déjanos tu nombre y correo para enviarte el PDF a tu correo electrónico" : "Leave us your name and email to send you the PDF to your email"
 }

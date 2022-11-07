@@ -32,9 +32,9 @@
               <a class="nav-link @if($route == 'es.inventory' or $route == 'en.inventory') active @endif" href="{{route('inventory')}}">{{__('Inventario')}}</a>
             </li>
 
-            <li class="nav-item me-1 me-lg-4">
+            {{-- <li class="nav-item me-1 me-lg-4">
                 <a class="nav-link @if($route == 'es.construction' or $route == 'en.construction') active @endif" href="{{route('construction')}}">{{__('Construcción')}}</a>
-            </li>
+            </li> --}}
 
             <li class="nav-item me-1 me-lg-4">
                 <a class="nav-link @if($route == 'es.lifestyle' or $route == 'en.lifestyle') active @endif" href="{{route('lifestyle')}}">{{__('Estilo de Vida')}}</a>
@@ -49,7 +49,7 @@
             </li>
 
             <li class="nav-item me-1 me-lg-4">
-                <button type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#searchModal">
+                <button type="button" class="btn nav-link ms-auto" data-bs-toggle="modal" data-bs-target="#searchModal">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </li>

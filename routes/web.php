@@ -47,8 +47,8 @@ Route::localized( function () {
     Route::get(Lang::uri('/busqueda'), [FrontPagesController::class, 'search'])->name('search');
     
     Route::get(Lang::uri('/condominio-en-venta').'/{id}', [FrontPagesController::class, 'unit'])->name('unit');
-
 });
 
-
 Route::post('/send-message', [FrontPagesController::class, 'sendLeadEmail'])->name('send.email');
+
+Route::redirect('/login', '/nova/login', 301);

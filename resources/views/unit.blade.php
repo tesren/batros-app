@@ -33,11 +33,11 @@
     </div>
 
     <div class="row justify-content-center pt-5 mb-6 position-relative" id="info">
-        <div class="col-12 col-lg-5 align-self-center">
+        <div class="col-12 col-lg-5 align-self-center mb-4 mb-lg-0">
             <h2 class="text-white fs-0"><span class="text-lightblue">{{__('Condominio')}}</span> {{$unit->name}}</h2>
             <h2 class="text-lightblue fs-1 fw-light mb-4">{{__('Area total')}}: {{$unit->area}}m²</h2>
             @if($unit->status == 'Disponible')
-                <h3 class="bg-light rounded-5 d-inline px-4 fs-0 fw-light" style="color:#1D3F4F;">${{number_format($unit->price)}} {{$unit->currency}}</h3>
+                <h3 class="bg-light rounded-5 d-inline px-1 px-lg-4 fs-0 fw-light" style="color:#1D3F4F;">${{number_format($unit->price)}} {{$unit->currency}}</h3>
             @elseif ($unit->status == 'Apartada')
                 <h3 class="bg-warning rounded-5 d-inline px-4 fs-0 fw-light" style="color:#1D3F4F;">{{__('Apartado')}}</h3>
             @else
@@ -91,7 +91,7 @@
                 <div class="carousel-inner">
                     @foreach ($galleryImgs as $img)
                         <div class="carousel-item @if($i == 1)active @endif">
-                            <img src="{{$img->getUrl();}}" class="d-block w-100 rounded-2" alt="{{__('Condominio')}} {{$unit->name}} {{__('Interiores')}}">
+                            <img src="{{$img->getUrl();}}" class="d-block w-100 rounded-2" alt="{{__('Condominio')}} {{$unit->name}} {{__('Interiores')}}" style="height: 550px; object-fit:cover;">
                         </div>
                       @php $i++; @endphp
                     @endforeach
