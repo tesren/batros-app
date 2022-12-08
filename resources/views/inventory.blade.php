@@ -51,7 +51,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-content" viewBox="0 0 1920 1080">
                                 @foreach ($section->units as $unit )
 
-                                    <a href="{{route('unit', ['id'=>$unit->id])}}" class="text-decoration-none position-relative">
+                                    <a href="{{route('unit', ['id'=>$unit->id, 'utm_campaign' => request()->query('utm_campaign'), 'utm_source' => request()->query('utm_source'), 'utm_medium' => request()->query('utm_medium') ] )}}" class="text-decoration-none position-relative">
                                         
                                         <polygon class="building-{{strtolower($unit->status)}}" points="{{ $unit->shape->points ?? '0,0'}}"></polygon>
 

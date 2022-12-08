@@ -72,7 +72,7 @@
 
                         <div class="fs-4 mb-3 fw-light">${{number_format($unit->price)}} {{$unit->currency}}</div>
 
-                        <a href="{{route('unit', ['id' => $unit->id])}}" class="btn btn-blue w-100">{{__('Ver más')}}</a>
+                        <a href="{{route('unit', ['id' => $unit->id, 'utm_campaign' => request()->query('utm_campaign'), 'utm_source' => request()->query('utm_source'), 'utm_medium' => request()->query('utm_medium')])}}" class="btn btn-blue w-100">{{__('Ver más')}}</a>
                     </div>
                 </div>
             </div>
@@ -120,7 +120,7 @@
                             <i class="ms-3 fa-solid fa-ruler-combined"></i> {{$unit->area}} m²
                         </div>
 
-                        <a href="{{route('unit', ['id' => $unit->id])}}" class="btn btn-blue w-100">{{__('Ver más')}}</a>
+                        <a href="{{route('unit', ['id' => $unit->id, 'utm_campaign' => request()->query('utm_campaign'), 'utm_source' => request()->query('utm_source'), 'utm_medium' => request()->query('utm_medium')] )}}" class="btn btn-blue w-100">{{__('Ver más')}}</a>
                     </div>
                 </div>
             </div>

@@ -8,6 +8,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Email;
 use Laravel\Nova\Fields\Number;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 
 
 class Agent extends Resource
@@ -64,6 +65,7 @@ class Agent extends Resource
             Text::make('Nombre', 'name')->rules('required', 'max:255')->sortable(),
             Email::make('Email', 'email')->rules('required', 'max:255')->creationRules('unique:agents,email')->updateRules('unique:agents,email,{{resourceId}}'),
             Number::make('Teléfono', 'phone')->min(0)->rules('required'),
+            Images::make('Foto de Perfil', 'profile')->hideFromIndex(),
         ];
     }
 

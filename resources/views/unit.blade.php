@@ -91,7 +91,7 @@
                 <div class="carousel-inner">
                     @foreach ($galleryImgs as $img)
                         <div class="carousel-item @if($i == 1)active @endif">
-                            <img src="{{$img->getUrl();}}" class="d-block w-100 rounded-2" alt="{{__('Condominio')}} {{$unit->name}} {{__('Interiores')}}" style="height: 550px; object-fit:cover;">
+                            <img src="{{$img->getUrl()}}" class="d-block w-100 rounded-2" alt="{{__('Condominio')}} {{$unit->name}} {{__('Interiores')}}" style="height: 550px; object-fit:cover;">
                         </div>
                       @php $i++; @endphp
                     @endforeach
@@ -147,8 +147,8 @@
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-content" viewBox="0 0 1920 1080">
                                 <polygon class="building-blue" points="{{ $unit->shape->points ?? '0,0'}}"></polygon>
     
-                                <text x="{{$unit->shape->text_x ?? 0;}}" 
-                                    y="{{$unit->shape->text_y ?? 0; }}"
+                                <text x="{{$unit->shape->text_x ?? 0}}" 
+                                    y="{{$unit->shape->text_y ?? 0}}"
                                     font-size="50" font-weight="bold" fill="#fff" class="fw-light">
                                     {{$unit->name}}
                                 </text>
@@ -328,24 +328,41 @@
                 <!-- Modal PDF -->
                 <div class="modal fade" id="pdfModal-{{$plan->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content bg-blue text-white">
-                        <div class="modal-header">
-                            <h5 class="modal-title fs-5 fw-light" id="exampleModalLabel">{{__('Descargar PDF')}}</h5>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    
+                        <div class="modal-content bg-blue text-white">
+                            <div class="modal-header">
+                                <h5 class="modal-title fs-5 fw-light" id="exampleModalLabel">{{__('Descargar PDF')}}</h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="fs-6 fw-light">{{__('Déjanos tu nombre y correo para enviarte el PDF a tu correo electrónico')}}</div>
+                                <form action="{{route('send.email')}}#plans" method="post" class="mt-4">
+                                    @csrf
+                                    <input type="text" class="form-contact mb-3" name="name" id="name" placeholder="{{__('Nombre')}}" required maxlength="255">
+                                    <input type="email" class="form-contact mb-3" name="email" id="email" placeholder="{{__('Correo')}}" required maxlength="255">
+                                    <input type="hidden" name="url" value="{{url()->current()}}">
+                                    <input type="hidden" name="plan_id" value="{{$plan->id}}">
+                                    <input type="hidden" name="unit_id" value="{{$unit->id}}">
+                                    {!! htmlFormSnippet() !!}
+                                    
+                                    <button type="submit" class="btn btn-blue w-100 mt-4 rounded-4 text-uppercase">{{__('Enviar')}}</button>
+                                </form>
+                            </div>
+
+                            @php
+                            $errors = session('errors');
+                            @endphp
+                            @if ($errors)
+                                <div class="modal-footer">
+                                    @foreach ($errors as $error)
+                                        <div class="fs-5 text-lightblue text-center my-3">
+                                            <i class="fa-regular fa-circle-xmark"></i> {{$error}}
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
-                        <div class="modal-body">
-                            <div class="fs-6 fw-light">{{__('Déjanos tu nombre y correo para enviarte el PDF a tu correo electrónico')}}</div>
-                            <form action="{{route('send.email')}}#plans" method="post" class="mt-4">
-                                @csrf
-                                <input type="text" class="form-contact mb-3" name="name" id="name" placeholder="{{__('Nombre')}}" required maxlength="255">
-                                <input type="email" class="form-contact" name="email" id="email" placeholder="{{__('Correo')}}" required maxlength="255">
-                                <input type="hidden" name="url" value="{{url()->current()}}">
-                                <input type="hidden" name="plan_id" value="{{$plan->id}}">
-                                <input type="hidden" name="unit_id" value="{{$unit->id}}">
-                                <button type="submit" class="btn btn-blue w-100 mt-5 rounded-4 text-uppercase">{{__('Enviar')}}</button>
-                            </form>
-                        </div>
-                    </div>
+                    
                     </div>
                 </div>
 

@@ -11,88 +11,110 @@ use App\Models\Section;
 use App\Mail\NewLead;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PdfRequest;
+use Illuminate\Support\Facades\Validator;
+
 
 class FrontPagesController extends Controller
 {
     //
 
     public function sendLeadEmail(Request $request){
-        $msg = new Message();
 
-        $msg->name = $request->input('name');
-        $msg->email = $request->input('email');
-        $msg->phone = $request->input('phone');
-        $msg->content = $request->input('message');
-        $msg->url = $request->input('url');
+        $validator = Validator::make( $request->all(), [
+            'name'       => 'required|string|min:1|max:255',
+            'email'      => 'required|email|string|max:255',
+            'messsage'    => 'nullable|string|max:500',
+            'g-recaptcha-response' => 'recaptcha|required',
+        ]);
 
-        $msg->save();
+        if ( $validator->fails() ) {
+            return redirect()->back()->withInput()->with(['errors'=> $validator->errors()->all()]);
+        }
+        else{
+            $msg = new Message();
 
-        $email = Mail::to('info@c21oceanrealty.com');
+            $msg->name = $request->input('name');
+            $msg->email = $request->input('email');
+            $msg->phone = $request->input('phone');
+            $msg->content = $request->input('message');
+            $msg->url = $request->input('url');
 
-        $email->cc('michelena@punto401.com');
-        $email->bcc('erick@punto401.com');
-        
-        $email->send(new NewLead($msg));
-        
+            $msg->save();
 
-        return redirect()->back()->with('message', 'Gracias, su mensaje ha sido enviado');
+            $email = Mail::to('info@marinabatros.com');
 
+            $email->bcc(['erick@punto401.com','michelena@punto401.com']);
+            
+            $email->send(new NewLead($msg));
+            
+
+            return redirect()->back()->with('message', 'Gracias, su mensaje ha sido enviado');
+        }
     }
 
     public function sendPdfEmail(Request $request){
         
-        $unit_id = $request->input('unit_id');
-        $plan_id = $request->input('plan_id');
+        $validator = Validator::make( $request->all(), [
+            'name'       => 'required|string|min:1|max:255',
+            'email'      => 'required|email|string|max:255',
+            'g-recaptcha-response' => 'recaptcha|required',
+        ]);
 
-        $unit = Unit::find($unit_id);
-        $plan = PaymentPlan::find($plan_id);
-        
-        $msg = new Message();
+        if ( $validator->fails() ) {
+            return redirect()->back()->with(['errors'=> $validator->errors()->all()]);
+        }
+        else{
+            $unit_id = $request->input('unit_id');
+            $plan_id = $request->input('plan_id');
 
-        $msg->name = $request->input('name');
-        $msg->email = $request->input('email');
-        $msg->content = 'El cliente solicitó descargar el PDF del plan '.$plan->name.' desde la unidad '.$unit->name;
-        $msg->url = $request->input('url');
+            $unit = Unit::find($unit_id);
+            $plan = PaymentPlan::find($plan_id);
+            
+            $msg = new Message();
 
-        $msg->save();
+            $msg->name = $request->input('name');
+            $msg->email = $request->input('email');
+            $msg->content = 'El cliente solicitó descargar el PDF del plan '.$plan->name.' desde la unidad '.$unit->name;
+            $msg->url = $request->input('url');
 
-        $email = Mail::to('info@c21oceanrealty.com');
+            $msg->save();
 
-        $email->cc('michelena@punto401.com');
-        $email->bcc('erick@punto401.com');
-        
-        $email->send(new PdfRequest($msg));
+            $email = Mail::to('info@marinabatros.com');
 
-
-        //creamos y guardamos PDF
-
-        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
-        $pdf->setPaper('A4', 'landscape');
+            $email->bcc(['erick@punto401.com', 'michelena@punto401.com']);
+            
+            $email->send(new PdfRequest($msg));
 
 
-        $pdf->loadView('shared.plan-pdf', compact('unit', 'plan'));
-        
+            //creamos y guardamos PDF
 
-        $id = uniqid();
-        $path = '/storage/PDFs/'. $id .'.pdf';
-        $publicPath = public_path($path);
-        $pdf->save($publicPath);
+            $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+            $pdf->setPaper('A4', 'landscape');
 
-        //Mail para el cliente con el link
-        $to = $msg->email;
-        $subject = 'Batros -  Descarga tu PDF';
 
-        $headers = 'From: webmaster@batrosvallarta.com' . "\r\n";
-        $headers .= 'Bcc: erick@punto401.com' . "\r\n";
+            $pdf->loadView('shared.plan-pdf', compact('unit', 'plan'));
+            
 
-        $body = 'Para obtener el PDF de tu cotización por favor da clic en el siguiente enlace'."\r\n";
-        $body .= url($path)."\r\n";
-        
-        mail($to, $subject, $body, $headers);
-        
+            $id = uniqid();
+            $path = '/storage/PDFs/'. $id .'.pdf';
+            $publicPath = public_path($path);
+            $pdf->save($publicPath);
 
-        return redirect()->back()->with('message', 'Gracias, revisa tu correo para obtener tu PDF');
+            //Mail para el cliente con el link
+            $to = $msg->email;
+            $subject = 'Batros -  Descarga tu PDF';
 
+            $headers = 'From: webmaster@batrosvallarta.com' . "\r\n";
+            $headers .= 'Bcc: erick@punto401.com' . "\r\n";
+
+            $body = 'Para obtener el PDF de tu cotización por favor da clic en el siguiente enlace'."\r\n";
+            $body .= url($path)."\r\n";
+            
+            mail($to, $subject, $body, $headers);
+            
+
+            return redirect()->back()->with('message', 'Gracias, revisa tu correo para obtener tu PDF');
+        }
     }
 
     public function constructionPage(){

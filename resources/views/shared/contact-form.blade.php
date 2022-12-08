@@ -11,20 +11,35 @@
         <div class="col-12 col-lg-6 col-xl-4 mb-6" style="z-index: 10;">
             <form action="{{route('send.email')}}#contact-form" method="post">
                 @csrf
-                <input type="text" class="form-contact mb-3" name="name" id="name" placeholder="{{__('Nombre')}}" required maxlength="255">
-                <input type="email" class="form-contact mb-3" name="email" id="email" placeholder="{{__('Correo')}}" required maxlength="255">
-                <input type="number" class="form-contact mb-3" name="phone" id="phone" placeholder="{{__('Teléfono')}}" min="0">
-                <textarea class="form-contact mb-4" name="message" id="message" cols="30" rows="6" placeholder="{{__('Mensaje')}}" maxlength="255"></textarea>
+                <input type="text" class="form-contact mb-3" name="name" id="name" placeholder="{{__('Nombre')}}" required maxlength="255" value="{{ old('name') }}">
+                <input type="email" class="form-contact mb-3" name="email" id="email" placeholder="{{__('Correo')}}" required maxlength="255" value="{{ old('email') }}">
+                <input type="number" class="form-contact mb-3" name="phone" id="phone" placeholder="{{__('Teléfono')}}" min="0" value="{{ old('phone') }}">
+                <textarea class="form-contact mb-3" name="message" id="message" cols="30" rows="6" placeholder="{{__('Mensaje')}}" maxlength="255">{{ old('message') }}</textarea>
                 <input type="hidden" name="url" value="{{url()->current()}}">
-                <div class="row justify-content-center">
+                {!! htmlFormSnippet() !!}
+
+                <div class="row justify-content-center mt-4">
                     <button type="submit" class="btn btn-blue col-12 col-lg-6 rounded-4 text-uppercase">{{__('Enviar')}}</button>
                 </div>
             </form>
+
             @if (session('message'))
                 <div class="fs-5 text-lightblue text-center mt-4">
                     <i class="fa-regular fa-circle-check"></i> {{__(session('message'))}}
                 </div>
             @endif
+
+            @php
+                $errors = session('errors');
+            @endphp
+            @if ($errors)
+                @foreach ($errors as $error)
+                    <div class="fs-5 text-lightblue text-center my-3">
+                        <i class="fa-regular fa-circle-xmark"></i> {{$error}}
+                    </div>
+                @endforeach
+            @endif
+
         </div>
     
     </div>

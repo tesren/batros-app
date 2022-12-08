@@ -1,5 +1,32 @@
 <footer>
 
+    @php
+        
+        $agents = App\Models\Agent::all();
+        $utm_medium = request()->query('utm_medium');
+        $utm_campaign = urldecode( request()->query('utm_campaign') );
+
+        if( $utm_medium == 'Asesores' or $utm_medium == 'Agents'){
+            
+            $agent = $agents->where('name', $utm_campaign)->first();
+            
+            if( isset($agent) ){
+                $phone = $agent->phone;
+                $email = $agent->email;
+            }
+            else{
+                $phone = '3223300316';
+                $email = 'info@marinabatros.com';
+            }
+
+        }
+        else{
+            $phone = '3223300316';
+            $email = 'info@marinabatros.com';
+        }
+
+    @endphp
+
     <div class="row justify-content-evenly mb-5">
 
         <div class="col-12 col-lg-4">
@@ -9,13 +36,12 @@
                     <i class="fa-solid fa-3x text-white fa-phone"></i>
                 </div>
                 <div>
-                    <a class="link-light d-block text-decoration-none mb-1" href="tel:+523222609689">+52 322 260 9689</a>
-                    <a class="link-light d-block text-decoration-none" href="tel:+523226884352">+52 322 688 4352</a>
+                    <a class="link-light d-block text-decoration-none fs-5" href="tel:+523223300316">+52 {{$phone}}</a>
                 </div>
             </div>
             <div class="d-flex mt-4">
                 <i class="fa-solid fa-envelope fa-3x text-white me-3"></i>
-                <a href="mailto:info@c21oceanrealty.com" class="link-light d-block align-self-center text-decoration-none">info@c21oceanrealty.com</a>
+                <a href="mailto:{{$email}}" class="link-light d-block align-self-center text-decoration-none">{{$email}}</a>
             </div>
         </div>
 
@@ -28,10 +54,10 @@
         </div>
 
         <div class="col-12 col-lg-3 align-self-center">
-            <a href="https://www.instagram.com/batros_marina_residences/" target="_blank" rel="noopener noreferrer" class="link-light text-decoration-none">
+            <a href="https://www.instagram.com/batrosmarinaresidences/" target="_blank" rel="noopener noreferrer" class="link-light text-decoration-none">
                 <i class="fa-brands fa-3x fa-instagram"></i>
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" class="link-light text-decoration-none ms-4">
+            <a href="https://www.facebook.com/batrosmarinaresidences" target="_blank" rel="noopener noreferrer" class="link-light text-decoration-none ms-4">
                 <i class="fa-brands fa-3x fa-facebook"></i>
             </a>
         </div>

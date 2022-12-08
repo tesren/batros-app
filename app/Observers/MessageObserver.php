@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Message;
+use App\Models\User;
 use App\Notifications\MessageReceived;
 use Illuminate\Support\Facades\Notification;
 

@@ -1,7 +1,7 @@
-<nav class="navbar bg-blue navbar-expand-lg py-1 navbar-dark shadow-4" id="go-back-up">
+<nav class="navbar bg-blue navbar-expand-lg py-1 navbar-dark shadow-4 sticky-top" id="go-back-up">
     <div class="container-fluid">
 
-      <a class="navbar-brand" href="{{route('home')}}">
+      <a class="navbar-brand" href="{{route('home', request()->query())}}">
         <img width="250px" src="{{asset('img/batros-logo.png')}}" alt="Logo Batros Marina Residences">
       </a>
 
@@ -25,27 +25,27 @@
             @endphp
 
             <li class="nav-item me-1 me-lg-4">
-              <a class="nav-link @if($route == 'es.home' or $route == 'en.home') active @endif" href="{{route('home')}}">{{__('Inicio')}}</a>
+              <a class="nav-link @if($route == 'es.home' or $route == 'en.home') active @endif" href="{{route('home', request()->query() )}}">{{__('Inicio')}}</a>
             </li>
 
             <li class="nav-item me-1 me-lg-4">
-              <a class="nav-link @if($route == 'es.inventory' or $route == 'en.inventory') active @endif" href="{{route('inventory')}}">{{__('Inventario')}}</a>
+              <a class="nav-link @if($route == 'es.inventory' or $route == 'en.inventory') active @endif" href="{{route('inventory', request()->query() )}}">{{__('Inventario')}}</a>
             </li>
 
             {{-- <li class="nav-item me-1 me-lg-4">
-                <a class="nav-link @if($route == 'es.construction' or $route == 'en.construction') active @endif" href="{{route('construction')}}">{{__('Construcción')}}</a>
+                <a class="nav-link @if($route == 'es.construction' or $route == 'en.construction') active @endif" href="{{route('construction', request()->query() )}}">{{__('Construcción')}}</a>
             </li> --}}
 
             <li class="nav-item me-1 me-lg-4">
-                <a class="nav-link @if($route == 'es.lifestyle' or $route == 'en.lifestyle') active @endif" href="{{route('lifestyle')}}">{{__('Estilo de Vida')}}</a>
+                <a class="nav-link @if($route == 'es.lifestyle' or $route == 'en.lifestyle') active @endif" href="{{route('lifestyle', request()->query() )}}">{{__('Estilo de Vida')}}</a>
             </li>
 
             <li class="nav-item me-1 me-lg-4">
-                <a class="nav-link @if($route == 'es.about' or $route == 'en.about') active @endif" href="{{route('about')}}">{{__('Nosotros')}}</a>
+                <a class="nav-link @if($route == 'es.about' or $route == 'en.about') active @endif" href="{{route('about', request()->query() )}}">{{__('Nosotros')}}</a>
             </li>
 
             <li class="nav-item me-1 me-lg-4">
-                <a class="nav-link @if($route == 'es.contact' or $route == 'en.contact') active @endif" href="{{route('contact')}}">{{__('Contacto')}}</a>
+                <a class="nav-link @if($route == 'es.contact' or $route == 'en.contact') active @endif" href="{{route('contact', request()->query() )}}">{{__('Contacto')}}</a>
             </li>
 
             <li class="nav-item me-1 me-lg-4">
@@ -59,21 +59,21 @@
               @if (app()->getLocale() == 'es')
 
                 @if($route == 'es.unit')
-                  <a class="link-dark text-decoration-none rounded-circle bg-light p-2" href="{{$url = route('unit', ['id'=>$unit->id], true, 'en');}}">{{__('EN')}}</a>
+                  <a class="link-dark text-decoration-none rounded-circle bg-light p-2" href="{{$url = route('unit', ['id'=>$unit->id, 'utm_campaign' => request()->query('utm_campaign'), 'utm_source' => request()->query('utm_source'), 'utm_medium' => request()->query('utm_medium')], true, 'en');}}">{{__('EN')}}</a>
                 @elseif($route == 'es.search')
                   <a class="link-dark text-decoration-none rounded-circle bg-light p-2" href="{{$url = route('search', request()->query(), true, 'en'); }}">{{__('EN')}}</a>
                 @else
-                  <a class="link-dark text-decoration-none rounded-circle bg-light p-2" href="{{$url = route($route, [], true, 'en');}}">{{__('EN')}}</a>
+                  <a class="link-dark text-decoration-none rounded-circle bg-light p-2" href="{{$url = route($route, request()->query(), true, 'en');}}">{{__('EN')}}</a>
                 @endif
 
               @else
 
                 @if($route == 'en.unit')
-                  <a class="link-dark text-decoration-none rounded-circle bg-light p-2" href="{{$url = route('unit', ['id'=>$unit->id], true, 'es');}}">{{__('ES')}}</a>
+                  <a class="link-dark text-decoration-none rounded-circle bg-light p-2" href="{{$url = route('unit', ['id'=>$unit->id, 'utm_campaign' => request()->query('utm_campaign'), 'utm_source' => request()->query('utm_source'), 'utm_medium' => request()->query('utm_medium')], true, 'es');}}">{{__('ES')}}</a>
                 @elseif($route == 'en.search')
                   <a class="link-dark text-decoration-none rounded-circle bg-light p-2" href="{{$url = route('search', request()->query(), true, 'es'); }}">{{__('ES')}}</a>
                 @else
-                  <a class="link-dark text-decoration-none rounded-circle bg-light p-2" href="{{$url = route($route, [], true, 'es');}}">{{__('ES')}}</a>
+                  <a class="link-dark text-decoration-none rounded-circle bg-light p-2" href="{{$url = route($route, request()->query(), true, 'es');}}">{{__('ES')}}</a>
                 @endif
 
               @endif
