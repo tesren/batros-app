@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Message;
 use App\Models\ConstructionUpdate;
 use App\Models\Unit;
+use App\Models\Agent;
 use App\Models\PaymentPlan;
 use App\Models\Section;
 use App\Mail\NewLead;
@@ -41,7 +42,20 @@ class FrontPagesController extends Controller
 
             $msg->save();
 
-            $email = Mail::to('info@marinabatros.com');
+            $agent_name = request()->input('utm_campaign');
+            if( isset($agent_name) ){
+                $agent = Agent::where('name', $agent_name)->first();
+
+                if( isset($agent) ){
+                    $email = Mail::to('info@batrosmarina.com');
+                    $email->cc($agent->email);
+                }else{
+                    $email = Mail::to('info@batrosmarina.com');
+                }
+            }
+            else{
+                $email = Mail::to('info@batrosmarina.com');
+            }
 
             $email->bcc(['erick@punto401.com','michelena@punto401.com']);
             
@@ -79,7 +93,7 @@ class FrontPagesController extends Controller
 
             $msg->save();
 
-            $email = Mail::to('info@marinabatros.com');
+            $email = Mail::to('info@batrosmarina.com');
 
             $email->bcc(['erick@punto401.com', 'michelena@punto401.com']);
             
@@ -183,6 +197,21 @@ class FrontPagesController extends Controller
         $allUnits = Unit::where('status', 'Disponible')->limit(9)->get();
 
         return view('search', compact('units', 'allUnits'));
+    }
+
+    public function setAgentCookie(Request $request){
+
+        $agentName = $request->input('agent_cookie');
+        $cookie = cookie('agent', $agentName, 43200);
+
+        return redirect()->back()->withCookie($cookie);
+    }
+
+    public function getAgentCookie(Request $request){
+
+        $cookie = $request->cookie('agent');
+
+        echo $cookie;
     }
 
 }

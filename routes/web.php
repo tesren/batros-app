@@ -52,3 +52,7 @@ Route::localized( function () {
 Route::post('/send-message', [FrontPagesController::class, 'sendLeadEmail'])->name('send.email');
 
 Route::redirect('/login', '/nova/login', 301);
+
+//cookies
+Route::get('/setAgentCookie', [FrontPagesController::class, 'setAgentCookie'])->name('set.agent.cookie');
+Route::get('/getAgentCookie', [FrontPagesController::class, 'getAgentCookie'])->name('get.agent.cookie');

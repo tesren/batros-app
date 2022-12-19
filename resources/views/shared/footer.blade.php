@@ -16,13 +16,28 @@
             }
             else{
                 $phone = '3223300316';
-                $email = 'info@marinabatros.com';
+                $email = 'info@batrosmarina.com';
+            }
+
+        }
+        elseif( Cookie::get('agent') != null ){
+            $agent_name = Cookie::get('agent');
+            $agent = $agents->where('name', $agent_name)->first();
+
+            if( isset($agent) ){
+                $phone = $agent->phone;
+                $email = $agent->email;
+                $profile = $agent->getFirstMedia('profile');
+            }
+            else{
+                $phone = '3223300316';
+                $email = 'info@batrosmarina.com';
             }
 
         }
         else{
             $phone = '3223300316';
-            $email = 'info@marinabatros.com';
+            $email = 'info@batrosmarina.com';
         }
 
     @endphp
@@ -36,12 +51,12 @@
                     <i class="fa-solid fa-3x text-white fa-phone"></i>
                 </div>
                 <div>
-                    <a class="link-light d-block text-decoration-none fs-5" href="tel:+523223300316">+52 {{$phone}}</a>
+                    <a id="phone_footer" class="link-light d-block text-decoration-none fs-5" href="tel:+52{{$phone}}">+52 {{$phone}}</a>
                 </div>
             </div>
             <div class="d-flex mt-4">
                 <i class="fa-solid fa-envelope fa-3x text-white me-3"></i>
-                <a href="mailto:{{$email}}" class="link-light d-block align-self-center text-decoration-none">{{$email}}</a>
+                <a id="mail_footer" href="mailto:{{$email}}" class="link-light d-block align-self-center text-decoration-none">{{$email}}</a>
             </div>
         </div>
 
