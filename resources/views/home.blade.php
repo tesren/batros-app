@@ -8,8 +8,23 @@
 @section('content')
 
     <div class="position-relative">
-        <img class="w-100" src="{{asset('img/home-landing.jpg')}}" alt="Batros Marina Residences" style="height: 90vh; object-fit:cover; z-index:1;">
+        
+        {{-- <img class="w-100" src="{{asset('img/home-landing.jpg')}}" alt="Batros Marina Residences" style="height: 90vh; object-fit:cover; z-index:1;"> --}}
+
+
+        <video src="{{asset('videos/batros-home.m4v')}}" poster="{{asset('img/home-landing.jpg')}}" autoplay loop muted class="w-100" style="height: 90vh; object-fit:cover; z-index:1;"></video>
+
         <div class="bg-blue-gradient"></div>
+
+        <div class="row justify-content-center position-absolute top-0 start-0 w-100 h-100" style="z-index: 2;">
+        
+            <div class="col-12 col-lg-10 text-center align-self-center">
+                <a href="https://youtu.be/iMEDZ_dCHK4" data-fancybox="video-batros" class="btn btn-blue">
+                    <i class="fa-solid fa-play"></i> {{__('Ver Video')}}
+                </a>
+            </div>
+
+        </div>
 
         <div class="position-absolute bottom-0 start-0 w-100 text-center" style="z-index: 3;">
             <a href="#info" class="d-block link-light text-decoration-none fs-1 mb-3"><i class="fa-solid fa-circle-chevron-down"></i></a>
@@ -161,4 +176,6 @@
         }
 
     </script>
+
+    <script src="{{asset('js/fancybox.umd.js')}}"></script>
 @endsection

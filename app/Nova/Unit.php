@@ -72,7 +72,7 @@ class Unit extends Resource
         return [
             ID::make()->sortable()->hideFromDetail(),
             Text::make('Nombre', 'name')->rules('required', 'max:50')->sortable()->creationRules('unique:units,name')->updateRules('unique:units,name,{{resourceId}}'),
-            BelongsTo::make('Vista de la Unidad', 'section', Section::class)->withoutTrashed()->rules('required')->sortable()->filterable(),
+            BelongsTo::make('Vista de la Unidad', 'section', Section::class)->withoutTrashed()->rules('required')->hideFromIndex()->filterable(),
             Number::make('Recámaras', 'bedrooms')->rules('required')->min(0)->max(15)->sortable(),
             Boolean::make('Flexroom', 'flexroom')->help('Marque la casilla si la unidad cuenta con un Flexroom')->hideFromIndex(),
             Number::make('Baños', 'bathrooms')->rules('required')->min(0)->max(15)->hideFromIndex(),

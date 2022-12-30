@@ -268,7 +268,7 @@
                 @endphp
 
                 <div class="tab-pane fade @if($j == 1) show active @endif" id="pills-plan-tab-{{$plan->id}}" role="tabpanel" aria-labelledby="pills-plan-nav-{{$plan->id}}" tabindex="{{$j}}">
-                    <div class="row justify-content-center">
+                    <div class="row px-1 justify-content-center">
 
                         <div class="col-12 col-lg-8 col-xl-5 fs-4 bg-lightblue rounded-3 text-blue fw-light px-0 shadow-6">
 

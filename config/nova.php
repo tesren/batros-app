@@ -163,7 +163,7 @@ return [
     */
 
     'brand' => [
-        'logo' => resource_path('/img/century.svg'),
+        'logo' => resource_path('/img/batros-logo.svg'),
 
         /* 'colors' => [
             "400" => "24, 182, 155, 0.5",

@@ -71,6 +71,10 @@ body{
     box-shadow: 0 3px 5px -1px #0003,0 5px 8px #00000024,0 1px 14px #0000001f;
 }
 
+.btn{
+    --bs-btn-font-family :'Lexend', sans-serif !important;
+}
+
 .btn-blue:hover, .btn-blue:focus{
     background-color: #c8d5cb;
     color: var(--blue);
