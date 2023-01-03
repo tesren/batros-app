@@ -71,14 +71,21 @@ class Unit extends Resource
     {
         return [
             ID::make()->sortable()->hideFromDetail(),
-            Text::make('Nombre', 'name')->rules('required', 'max:50')->sortable()->creationRules('unique:units,name')->updateRules('unique:units,name,{{resourceId}}'),
+
+            Text::make('Unidad', 'name')->rules('required', 'max:50')->sortable()->creationRules('unique:units,name')->updateRules('unique:units,name,{{resourceId}}')
+            ->displayUsing(
+                function($value){
+                    return $value.' - '.$this->bedrooms.' BR - '.$this->bathrooms.' BA - '.$this->area.'m²';
+                }
+            ),
+
             BelongsTo::make('Vista de la Unidad', 'section', Section::class)->withoutTrashed()->rules('required')->hideFromIndex()->filterable(),
-            Number::make('Recámaras', 'bedrooms')->rules('required')->min(0)->max(15)->sortable(),
+            Number::make('Recámaras', 'bedrooms')->rules('required')->min(0)->max(15)->hideFromIndex(),
             Boolean::make('Flexroom', 'flexroom')->help('Marque la casilla si la unidad cuenta con un Flexroom')->hideFromIndex(),
             Number::make('Baños', 'bathrooms')->rules('required')->min(0)->max(15)->hideFromIndex(),
             Number::make('Piso', 'floor')->rules('required')->min(0)->max(15)->sortable(),
             
-            Number::make('Construcción total', 'area')->rules('required')->min(0)->step(0.01)->sortable()->help('El área total de la unidad en metros cuadrados')
+            Number::make('Construcción total', 'area')->rules('required')->min(0)->step(0.01)->hideFromIndex()->help('El área total de la unidad en metros cuadrados')
             ->displayUsing(
                 function($value){
                     return $value.' m²';

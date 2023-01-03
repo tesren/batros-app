@@ -39,6 +39,10 @@ Route::localized( function () {
     Route::get(Lang::uri('/amenidades'), function () {
         return view('amenities');
     })->name('amenities');
+
+    Route::get('/landing-page', function () {
+        return view('landing');
+    })->name('landing');
     
     Route::get(Lang::uri('/inventario-condominios'), [FrontPagesController::class, 'inventory'])->name('inventory');
     
