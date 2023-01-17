@@ -32,9 +32,9 @@
               <a class="nav-link @if($route == 'es.inventory' or $route == 'en.inventory') active @endif" href="{{route('inventory', request()->query() )}}">{{__('Inventario')}}</a>
             </li>
 
-            {{-- <li class="nav-item me-1 me-lg-4">
+            <li class="nav-item me-1 me-lg-4">
                 <a class="nav-link @if($route == 'es.construction' or $route == 'en.construction') active @endif" href="{{route('construction', request()->query() )}}">{{__('Construcción')}}</a>
-            </li> --}}
+            </li>
 
             <li class="nav-item me-1 me-lg-4">
                 <a class="nav-link @if($route == 'es.lifestyle' or $route == 'en.lifestyle') active @endif" href="{{route('lifestyle', request()->query() )}}">{{__('Estilo de Vida')}}</a>

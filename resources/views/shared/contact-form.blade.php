@@ -50,7 +50,7 @@
             <hr class="text-white col-10 col-lg-8 mb-4 mx-auto" style="opacity: 1; height:2px;">
 
             @if ( isset($agent) )
-                <img src="{{$profile->getUrl()}}" alt="{{$agent->name}}" class="rounded-circle mb-2 shadow-7" style="height: 220px; width:220px; object-fit:cover; object-position:top;">
+                <img src="{{$profile->getUrl()}}" alt="{{$agent->name}}" class="rounded-circle mb-2 shadow-7" style="height: 220px; width:220px; object-fit:cover; object-position:top;" loading="lazy">
                 <h6 class="fs-3 mb-0">{{$agent->name}}</h6>
                 <hr class="text-white col-8 col-lg-6 my-2 mx-auto" style="opacity: 1; height:2px;">
                 <div class="mb-2">{{__('Agente Inmobiliario')}}</div>
@@ -63,7 +63,7 @@
                     <a href="mailto:{{$email}}" class="link-light text-decoration-none">{{$email}}</a>
                 </div>
             @else
-                <img src="{{asset('img/batros-big-logo.png')}}" alt="Batros Marina Residences Logo" class="col-12 col-lg-7">
+                <img src="{{asset('img/batros-big-logo.png')}}" alt="Batros Marina Residences Logo" class="col-12 col-lg-7" loading="lazy">
             @endif
 
         </div>
@@ -104,6 +104,6 @@
     
     </div>
 
-    <img width="260px" class="d-none d-lg-block position-absolute end-0 top-50" src="{{asset('img/feather.png')}}" alt="" style="z-index: 5;">
+    <img width="260px" class="d-none d-lg-block position-absolute end-0 top-50" src="{{asset('img/feather.png')}}" alt="" style="z-index: 5;" loading="lazy">
 
 </div>

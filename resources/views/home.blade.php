@@ -31,9 +31,9 @@
             <h1 class="text-white fs-2 mb-5 fw-light">{{__('Continúa escribiendo tu historia en Batros Marina Residences…')}}</h1>
         </div>
 
-        <img width="330px" class="d-none d-lg-block position-absolute start-0" src="{{asset('img/feather.png')}}" alt="" style="z-index: 5; top:80%; transform: scaleX(-1);">
+        <img width="330px" class="d-none d-lg-block position-absolute start-0" src="{{asset('img/feather.png')}}" alt="" style="z-index: 5; top:80%; transform: scaleX(-1);" loading="lazy">
 
-        <img width="330px" class="d-none d-lg-block position-absolute end-0" src="{{asset('img/feather.png')}}" alt="" style="z-index: 5; top:80%;">
+        <img width="330px" class="d-none d-lg-block position-absolute end-0" src="{{asset('img/feather.png')}}" alt="" style="z-index: 5; top:80%;" loading="lazy">
 
     </div>
 
@@ -106,7 +106,7 @@
     {{-- Ubicación --}}
     <div class="svg-container">
 
-        <img class="w-100" src="{{asset('img/batros-map.jpg')}}" alt="Batros Marina Residences Location">
+        <img class="w-100" src="{{asset('img/batros-map.jpg')}}" alt="Batros Marina Residences Location" loading="lazy">
 
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-content" viewBox="0 0 1920 1081">
             {{-- Título --}}

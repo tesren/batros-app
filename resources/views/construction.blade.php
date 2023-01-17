@@ -37,7 +37,7 @@
             //var_dump($images);
         @endphp
 
-        <h3 class="fs-2 text-lightblue mb-3 text-center">{{__('Progreso de la obra')}} - {{ date_format($update->date, 'M Y'); }}</h3>
+        <h3 class="fs-2 text-lightblue mb-3 text-center">{{__('Progreso de la obra')}} - {{ __(date_format($update->date, 'F')); }} {{ date_format($update->date, 'Y'); }}</h3>
         @isset($update->description)
             @if (app()->getLocale() == 'es')
                 <p class="fs-5 fw-light text-center text-white">{{$update->description}}</p>
