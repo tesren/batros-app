@@ -16,10 +16,12 @@ use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Laravel\Nova\Panel;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\Tag;
 use App\Nova\PaymentPlan;
 use Laravel\Nova\Fields\HasOne;
 use App\Nova\Shape;
 use App\Nova\Actions\ChangeUnitView;
+use App\Nova\Actions\AssignPaymentPlan;
 
 class Unit extends Resource
 {
@@ -118,7 +120,9 @@ class Unit extends Resource
 
             new Panel('Imágenes', $this->imageFields()),
 
-            BelongsToMany::make('Planes de pago', 'paymentPlans', PaymentPlan::class),
+            //BelongsToMany::make('Planes de pago', 'paymentPlans', PaymentPlan::class),
+
+            Tag::make('Planes de pago', 'paymentPlans', PaymentPlan::class)->hideFromIndex(),
 
             HasOne::make('Polígono', 'shape', Shape::class),
 
@@ -181,6 +185,7 @@ class Unit extends Resource
     {
         return [
             new ChangeUnitView,
+            new AssignPaymentPlan,
         ];
     }
 }

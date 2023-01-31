@@ -54,8 +54,15 @@ Route::localized( function () {
 });
 
 Route::post('/send-message', [FrontPagesController::class, 'sendLeadEmail'])->name('send.email');
+Route::post('/send-pdfmessage', [FrontPagesController::class, 'sendPdfEmail'])->name('send.pdf.email');
 
 Route::redirect('/login', '/nova/login', 301);
+
+/* Route::get('/optimize', function () {
+    Artisan::call('optimize');
+    return 'Optimization complete.';
+}); */
+
 
 //cookies
 Route::get('/setAgentCookie', [FrontPagesController::class, 'setAgentCookie'])->name('set.agent.cookie');

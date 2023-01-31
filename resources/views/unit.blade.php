@@ -263,8 +263,13 @@
             @foreach ($unit->paymentPlans as $plan)
                 @php
                     $enganche = ($unit->price) * ($plan->down_payment/100);
+                    $closing = ($unit->price) * ($plan->closing_payment/100);
                     $meses = ($unit->price) * ($plan->months_percent/100);
-                    $mes = $meses / ($plan->months_quantity);
+                    if(isset($meses) and isset($plan->months_quantity)){                        
+                        $mes = $meses / ($plan->months_quantity);
+                    }else{
+                        $mes = 0;
+                    }
                 @endphp
 
                 <div class="tab-pane fade @if($j == 1) show active @endif" id="pills-plan-tab-{{$plan->id}}" role="tabpanel" aria-labelledby="pills-plan-nav-{{$plan->id}}" tabindex="{{$j}}">
@@ -305,12 +310,21 @@
                                 <div class="text-end">${{ number_format($enganche, 2) }} {{$unit->currency}}</div>
                             </div>
 
-                            <div class="d-flex justify-content-between mb-3 px-1 px-lg-3 fs-5">
-                                <div>{{$plan->months_percent}}% {{__('en')}} {{$plan->months_quantity}} {{__('Meses')}}</div>
-                                <div class="text-end fs-4">${{ number_format($meses, 2) }} {{$unit->currency}} 
-                                    <div class="fs-6">${{number_format($mes,2)}} {{__('por mes')}}</div> 
+                            @if ($meses != 0)
+                                <div class="d-flex justify-content-between mb-3 px-1 px-lg-3 fs-5">
+                                    <div>{{$plan->months_percent}}% {{__('en')}} {{$plan->months_quantity}} {{__('Mensualidades')}}</div>
+                                    <div class="text-end fs-4">${{ number_format($meses, 2) }} {{$unit->currency}} 
+                                        @if($mes != 0)<div class="fs-6">${{number_format($mes,2)}} {{__('por mes')}}</div> @endif
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
+                            
+                            @isset($plan->closing_payment)
+                                <div class="d-flex justify-content-between mb-3 px-1 px-lg-3">
+                                    <div>{{$plan->closing_payment}}% {{__('Pago Final')}} </div>
+                                    <div class="text-end">${{ number_format($closing, 2) }} {{$unit->currency}}</div>
+                                </div>
+                            @endisset
 
                         </div>
 
@@ -336,14 +350,13 @@
                             </div>
                             <div class="modal-body">
                                 <div class="fs-6 fw-light">{{__('Déjanos tu nombre y correo para enviarte el PDF a tu correo electrónico')}}</div>
-                                <form action="{{route('send.email')}}#plans" method="post" class="mt-4">
+                                <form action="{{route('send.pdf.email')}}#plans" method="post" class="mt-4">
                                     @csrf
                                     <input type="text" class="form-contact mb-3" name="name" id="name" placeholder="{{__('Nombre')}}" required maxlength="255">
                                     <input type="email" class="form-contact mb-3" name="email" id="email" placeholder="{{__('Correo')}}" required maxlength="255">
                                     <input type="hidden" name="url" value="{{url()->current()}}">
                                     <input type="hidden" name="plan_id" value="{{$plan->id}}">
                                     <input type="hidden" name="unit_id" value="{{$unit->id}}">
-                                    {!! htmlFormSnippet() !!}
                                     
                                     <button type="submit" class="btn btn-blue w-100 mt-4 rounded-4 text-uppercase">{{__('Enviar')}}</button>
                                 </form>

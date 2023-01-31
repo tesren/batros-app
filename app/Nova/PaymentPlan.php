@@ -73,13 +73,18 @@ class PaymentPlan extends Resource
                     return $value.'%';
                 }
             ),
-            Number::make('Porcentaje de Meses', 'months_percent')->min(0)->max(100)->sortable()->rules('required')->displayUsing(
+            Number::make('Porcentaje de Meses', 'months_percent')->min(0)->max(100)->sortable()->displayUsing(
                 function($value){
                     return $value.'%';
                 }
             ),
-            Number::make('Cantidad de Meses', 'months_quantity')->sortable()->min(0)->max(100)->rules('required'),
-            
+            Number::make('Cantidad de Meses', 'months_quantity')->sortable()->min(0)->max(100),
+
+            Number::make('Pago final', 'closing_payment')->min(0)->max(100)->placeholder('Porcentaje del Pago ginal')->sortable()->displayUsing(
+                function($value){
+                    return $value.'%';
+                }
+            ),
         ];
     }
 

@@ -13,6 +13,7 @@ use App\Mail\NewLead;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PdfRequest;
 use Illuminate\Support\Facades\Validator;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class FrontPagesController extends Controller
@@ -71,7 +72,7 @@ class FrontPagesController extends Controller
         $validator = Validator::make( $request->all(), [
             'name'       => 'required|string|min:1|max:255',
             'email'      => 'required|email|string|max:255',
-            'g-recaptcha-response' => 'recaptcha|required',
+            //'g-recaptcha-response' => 'recaptcha|required',
         ]);
 
         if ( $validator->fails() ) {
