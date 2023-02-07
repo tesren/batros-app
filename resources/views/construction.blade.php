@@ -61,7 +61,3 @@
 </div>
 
 @endsection
-
-@section('javascript')
-    <script src="{{asset('js/fancybox.umd.js')}}"></script>
-@endsection

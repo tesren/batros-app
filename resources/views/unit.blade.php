@@ -305,10 +305,26 @@
 
                             @endisset
 
-                            <div class="d-flex justify-content-between mb-3 px-1 px-lg-3">
-                                <div>{{$plan->down_payment}}% {{__('de Enganche')}} </div>
-                                <div class="text-end">${{ number_format($enganche, 2) }} {{$unit->currency}}</div>
-                            </div>
+                            
+                            @if ($plan->name == "A")
+                                <div class="d-flex justify-content-between mb-3 px-1 px-lg-3">
+                                    <div>
+                                        {{$plan->down_payment}}% {{__('de Enganche')}} <br>
+                                        <span class="fs-6">{{__('Diferido en 3 Mensualidades')}}</span>
+                                    </div>
+
+                                    <div class="text-end">
+                                        ${{ number_format($enganche, 2) }} {{$unit->currency}} <br>
+                                        <span class="fs-6">${{ number_format(($enganche / 3), 2) }} {{$unit->currency}} {{__('por mes')}}</span>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="d-flex justify-content-between mb-3 px-1 px-lg-3">
+                                    <div>{{$plan->down_payment}}% {{__('de Enganche')}} </div>
+                                    <div class="text-end">${{ number_format($enganche, 2) }} {{$unit->currency}}</div>
+                                </div>
+                            @endif
+
 
                             @if ($meses != 0)
                                 <div class="d-flex justify-content-between mb-3 px-1 px-lg-3 fs-5">

@@ -8,6 +8,7 @@
     <meta name="facebook-domain-verification" content="ymnmdn3w7lh9eb2d63utchszfqw29t" />
     @yield('titles')
     @include('shared.favicon')
+    
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/fancybox.css')}}">
@@ -16,49 +17,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/batros.css')}}">
 
-    <!-- Google Tag Manager -->
-    <script>
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-P4W6R6S');
-    </script>
-    <!-- End Google Tag Manager -->
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X92Y5NBQXW"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-X92Y5NBQXW');
-    </script>
-
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    {!! htmlScriptTagJsApi() !!}
 
-    <!-- Facebook Pixel Code -->
-    <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window,document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '472886655000133'); 
-        fbq('track', 'PageView');
-    </script>
-    <noscript>
-        <img height="1" width="1" 
-        src="https://www.facebook.com/tr?id=472886655000133&ev=PageView
-        &noscript=1"/>
-    </noscript>
-    <!-- End Facebook Pixel Code -->
+    <!-- Third party js -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X92Y5NBQXW"></script>
+    <script async src="{{asset('js/third-party.js'); }}"></script>
+
+
+    {!! htmlScriptTagJsApi() !!}
 
 </head>
 
@@ -77,29 +44,6 @@
     <div id="fb-customer-chat" class="fb-customerchat">
     </div>
 
-    <script>
-        var chatbox = document.getElementById('fb-customer-chat');
-        chatbox.setAttribute("page_id", "102724669265564");
-        chatbox.setAttribute("attribution", "biz_inbox");
-    </script>
-
-    <!-- Your SDK code -->
-    <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-            xfbml            : true,
-            version          : 'v15.0'
-            });
-        };
-
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = 'https://connect.facebook.net/es_LA/sdk/xfbml.customerchat.js';
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
 
     @include('shared.navbar')
     @yield('content')
@@ -126,8 +70,7 @@
         </div>
     </div>
 
-    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('js/fontawesome.min.js')}}" async></script>
+    <script defer src="{{ asset('js/app.js') }}"></script>
 
     @if (Cookie::get('agent') == null)
         <script type="text/javascript">

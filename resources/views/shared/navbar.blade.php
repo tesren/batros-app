@@ -2,7 +2,7 @@
     <div class="container-fluid">
 
       <a class="navbar-brand" href="{{route('home', request()->query())}}">
-        <img width="250px" src="{{asset('img/batros-logo.png')}}" alt="Logo Batros Marina Residences">
+        <img width="250px" src="{{asset('img/batros-logo.webp')}}" alt="Logo Batros Marina Residences">
       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">

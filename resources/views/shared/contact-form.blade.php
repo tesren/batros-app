@@ -63,7 +63,7 @@
                     <a href="mailto:{{$email}}" class="link-light text-decoration-none">{{$email}}</a>
                 </div>
             @else
-                <img src="{{asset('img/batros-big-logo.png')}}" alt="Batros Marina Residences Logo" class="col-12 col-lg-7" loading="lazy">
+                <img src="{{asset('img/batros-big-logo.webp')}}" alt="Batros Marina Residences Logo" class="col-12 col-lg-7" loading="lazy">
             @endif
 
         </div>
@@ -104,6 +104,6 @@
     
     </div>
 
-    <img width="260px" class="d-none d-lg-block position-absolute end-0 top-50" src="{{asset('img/feather.png')}}" alt="" style="z-index: 5;" loading="lazy">
+    <img width="260px" class="d-none d-lg-block position-absolute end-0 top-50" src="{{asset('img/feather.webp')}}" alt="" style="z-index: 5;" loading="lazy">
 
 </div>

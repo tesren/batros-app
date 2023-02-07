@@ -12,7 +12,7 @@
         {{-- <img class="w-100" src="{{asset('img/home-landing.jpg')}}" alt="Batros Marina Residences" style="height: 90vh; object-fit:cover; z-index:1;"> --}}
 
 
-        <video src="{{asset('videos/batros-home.m4v')}}" poster="{{asset('img/home-landing.jpg')}}" autoplay loop muted class="w-100" style="height: 90vh; object-fit:cover; z-index:1;"></video>
+        <video src="{{asset('videos/batros-home.m4v')}}" poster="{{asset('img/home-landing.webp')}}" autoplay loop muted class="w-100" style="height: 90vh; object-fit:cover; z-index:1;"></video>
 
         <div class="bg-blue-gradient"></div>
 
@@ -31,16 +31,16 @@
             <h1 class="text-white fs-2 mb-5 fw-light">{{__('Continúa escribiendo tu historia en Batros Marina Residences…')}}</h1>
         </div>
 
-        <img width="330px" class="d-none d-lg-block position-absolute start-0" src="{{asset('img/feather.png')}}" alt="" style="z-index: 5; top:80%; transform: scaleX(-1);" loading="lazy">
+        <img width="330px" class="d-none d-lg-block position-absolute start-0" src="{{asset('img/feather.webp')}}" alt="" style="z-index: 5; top:80%; transform: scaleX(-1);" loading="lazy">
 
-        <img width="330px" class="d-none d-lg-block position-absolute end-0" src="{{asset('img/feather.png')}}" alt="" style="z-index: 5; top:80%;" loading="lazy">
+        <img width="330px" class="d-none d-lg-block position-absolute end-0" src="{{asset('img/feather.webp')}}" alt="" style="z-index: 5; top:80%;" loading="lazy">
 
     </div>
 
     {{-- Descripción --}}
     <div class="row justify-content-center pt-5 mb-6" id="info">
         <div class="col-12 col-lg-10 col-xl-5 mb-4">
-            <img src="{{asset('img/description-img.jpg')}}" alt="Batros Marina Residences" class="w-100 px-0 rounded-2 shadow-6" loading="lazy">
+            <img src="{{asset('img/description-img.webp')}}" alt="Batros Marina Residences" class="w-100 px-0 rounded-2 shadow-6" loading="lazy">
         </div>
 
         <div class="w-100"></div>
@@ -58,28 +58,28 @@
 
         <div class="row justify-content-center text-lightblue mb-5">
             <div class="col-6 col-xl-2">
-                <img src="{{asset('img/amenities/rooftop.png')}}" alt="{{__('Terraza 360')}}" class="col-12 col-lg-9" loading="lazy">
+                <img src="{{asset('img/amenities/rooftop.webp')}}" alt="{{__('Terraza 360')}}" class="col-12 col-lg-9" loading="lazy">
                 <div class="fs-3 fw-light">{{__('Terraza 360')}}°</div>
             </div>
             <div class="col-6 col-xl-2">
-                <img src="{{asset('img/amenities/bbq.png')}}" alt="{{__('Asador y Bar')}}" class="col-12 col-lg-9" loading="lazy">
+                <img src="{{asset('img/amenities/bbq.webp')}}" alt="{{__('Asador y Bar')}}" class="col-12 col-lg-9" loading="lazy">
                 <div class="fs-3 fw-light">{{__('Asador y Bar')}}</div>
             </div>
             <div class="col-6 col-xl-2">
-                <img src="{{asset('img/amenities/lounge.png')}}" alt="{{__('Mindfulness Lounge')}}" class="col-12 col-lg-9" loading="lazy">
+                <img src="{{asset('img/amenities/lounge.webp')}}" alt="{{__('Mindfulness Lounge')}}" class="col-12 col-lg-9" loading="lazy">
                 <div class="fs-3 fw-light">{{__('Mindfulness Lounge')}}</div>
             </div>
             <div class="col-6 col-xl-2">
-                <img src="{{asset('img/amenities/gym.png')}}" alt="{{__('Gimnasio')}}" class="col-12 col-lg-9" loading="lazy">
+                <img src="{{asset('img/amenities/gym.webp')}}" alt="{{__('Gimnasio')}}" class="col-12 col-lg-9" loading="lazy">
                 <div class="fs-3 fw-light">{{__('Gimnasio')}}</div>
             </div>
             <div class="col-6 col-xl-2">
-                <img src="{{asset('img/amenities/pool.png')}}" alt="{{__('Alberca Sky')}}" class="col-12 col-lg-9" loading="lazy">
+                <img src="{{asset('img/amenities/pool.webp')}}" alt="{{__('Alberca Sky')}}" class="col-12 col-lg-9" loading="lazy">
                 <div class="fs-3 fw-light">{{__('Alberca Sky')}}</div>
             </div>
         </div>
 
-        <img width="250px" class="d-none d-lg-block position-absolute start-0" src="{{asset('img/feather.png')}}" alt="" style="z-index: 5; top:60%; transform: scaleX(-1);" loading="lazy">
+        <img width="250px" class="d-none d-lg-block position-absolute start-0" src="{{asset('img/feather.webp')}}" alt="" style="z-index: 5; top:60%; transform: scaleX(-1);" loading="lazy">
 
         <a href="{{route('amenities', request()->query() )}}" class="btn btn-blue">{{__('Conocer más')}}</a>
 
@@ -97,8 +97,8 @@
         </div>
 
         <div class="col-12 col-lg-4 col-xl-3 position-relative">
-            <img src="{{asset('img/golf.jpg')}}" alt="Golf Marina Vallarta" class="w-100 rounded-2 shadow-6 position-relative" style="z-index:5;" loading="lazy">
-            <img width="230px" class="d-none d-lg-block position-absolute top-0" src="{{asset('img/feather.png')}}" alt="" style="z-index: 1; left:75%; transform: rotate(180deg);" loading="lazy">
+            <img src="{{asset('img/golf.webp')}}" alt="Golf Marina Vallarta" class="w-100 rounded-2 shadow-6 position-relative" style="z-index:5;" loading="lazy">
+            <img width="230px" class="d-none d-lg-block position-absolute top-0" src="{{asset('img/feather.webp')}}" alt="" style="z-index: 1; left:75%; transform: rotate(180deg);" loading="lazy">
         </div>
 
     </div>
@@ -106,7 +106,7 @@
     {{-- Ubicación --}}
     <div class="svg-container">
 
-        <img class="w-100" src="{{asset('img/batros-map.jpg')}}" alt="Batros Marina Residences Location" loading="lazy">
+        <img class="w-100" src="{{asset('img/batros-map.webp')}}" alt="Batros Marina Residences Location" loading="lazy">
 
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-content" viewBox="0 0 1920 1081">
             {{-- Título --}}
@@ -161,21 +161,4 @@
     @include('shared.contact-form')
 
 
-@endsection
-
-@section('javascript')
-    <script>
-        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
-        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
-
-        function removeAnimation(id){
-
-            var icon = document.getElementById(id);
-            icon.classList.toggle("fa-bounce");
-
-        }
-
-    </script>
-
-    <script src="{{asset('js/fancybox.umd.js')}}"></script>
 @endsection
