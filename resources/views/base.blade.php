@@ -19,14 +19,6 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-
-    <!-- Third party js -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X92Y5NBQXW"></script>
-    <script async src="{{asset('js/third-party.js'); }}"></script>
-
-
-    {!! htmlScriptTagJsApi() !!}
-
 </head>
 
 <body class="position-relative">
@@ -60,11 +52,12 @@
                 </div>
                 <div class="modal-body fw-normal-zen">
                     <p class="fs-5 fw-light">{{__('Utilizamos Cookies propias y de terceros en nuestro sitio web para mejorar nuestros servicios y la experiencia en el sitio')}}</p>
-                    <form action="{{route('set.agent.cookie')}}" method="get">
+                    {{-- <form action="{{route('set.agent.cookie')}}" method="get">
                         @csrf
                         <input type="hidden" name="agent_cookie" value="{{request()->query('utm_campaign') ?? 'Sin Agente'}}">
                         <button type="submit" class="btn btn-blue w-100">{{__('Aceptar Cookies')}}</button>
-                    </form>
+                    </form> --}}
+                    <button type="button" data-bs-dismiss="modal" onclick="createCookie('{{request()->query('utm_campaign') ?? 'Sin Agente'}}')" class="btn btn-blue w-100">{{__('Aceptar Cookies')}}</button>
                 </div>
             </div>
         </div>
@@ -72,7 +65,14 @@
 
     <script defer src="{{ asset('js/app.js') }}"></script>
 
-    @if (Cookie::get('agent') == null)
+    <!-- Third party js -->
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-X92Y5NBQXW"></script>
+    <script defer src="{{asset('js/third-party.js'); }}"></script>
+
+
+    {!! htmlScriptTagJsApi() !!}
+
+    {{-- @if (Cookie::get('agent') == null)
         <script type="text/javascript">
             document.addEventListener("DOMContentLoaded", function(event) {
                 const cookiesModal = new bootstrap.Modal('#cookiesModal');
@@ -80,7 +80,64 @@
                 cookiesModal.show();
             });
         </script>
-    @endif
+    @endif --}}
+
+    <script>
+        // función para verificar si una cookie existe
+        function getCookie(name) {
+            var dc = document.cookie;
+            var prefix = name + "=";
+            var begin = dc.indexOf("; " + prefix);
+            if (begin == -1) {
+                begin = dc.indexOf(prefix);
+                if (begin != 0) return null;
+            }
+            else
+            {
+                begin += 2;
+                var end = document.cookie.indexOf(";", begin);
+                if (end == -1) {
+                end = dc.length;
+                }
+            }
+            // because unescape has been deprecated, replaced with decodeURI
+            //return unescape(dc.substring(begin + prefix.length, end));
+            return decodeURI(dc.substring(begin + prefix.length, end));
+        }
+
+        document.addEventListener("DOMContentLoaded", function(event) {
+            const cookieValue = getCookie("agent");
+            const cookiesModal = new bootstrap.Modal('#cookiesModal');
+
+            if (cookieValue == null) {
+                // si la cookie no existe
+                cookiesModal.show();
+                console.log(cookieValue);
+
+            } else {
+                // si la cookie si existe
+                //cookiesModal = document.getElementById('cookiesModal'); 
+                console.log(cookieValue);
+                
+            }
+                
+        });
+
+        function createCookie(agentName){
+            
+            var agent_name = escape(agentName);
+            const date = new Date();
+            date.setTime(date.getTime() + (7*24*60*60*1000));
+            let expires = "expires="+ date.toUTCString();
+            
+
+            document.cookie = 'agent='+agent_name+';' + expires + ';domain=batrosmarina.com; path=/;SameSite=Lax;Secure';
+            console.log('Boton presionado');
+            console.log(agent_name);
+            console.log(date);
+        }
+        
+    </script>
 
     @yield('javascript')
 </body>

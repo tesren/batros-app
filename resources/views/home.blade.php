@@ -12,7 +12,9 @@
         {{-- <img class="w-100" src="{{asset('img/home-landing.jpg')}}" alt="Batros Marina Residences" style="height: 90vh; object-fit:cover; z-index:1;"> --}}
 
 
-        <video src="{{asset('videos/batros-home.m4v')}}" poster="{{asset('img/home-landing.webp')}}" autoplay loop muted class="w-100" style="height: 90vh; object-fit:cover; z-index:1;"></video>
+        <video id="home-video" src="{{asset('videos/batros-home.m4v')}}" poster="{{asset('img/home-landing.webp')}}" loop autoplay muted class="w-100 d-none d-lg-block" style="height: 90vh; object-fit:cover; z-index:1;"></video>
+
+        <img src="{{asset('img/home-landing.webp')}}" alt="Batros Marina Residences" class="w-100 d-block d-lg-none" style="height: 90vh; object-fit:cover; z-index:1;">
 
         <div class="bg-blue-gradient"></div>
 
@@ -160,5 +162,104 @@
 
     @include('shared.contact-form')
 
+    @php
+        
+        $agents = App\Models\Agent::all();
+        $utm_medium = request()->query('utm_medium');
+        $utm_campaign = urldecode( request()->query('utm_campaign') );
 
+        if( $utm_medium == 'Asesores' or $utm_medium == 'Agents'){
+            
+            $agent = $agents->where('name', $utm_campaign)->first();
+            
+            if( isset($agent) ){
+                $phone = $agent->phone;
+                $email = $agent->email;
+            }
+            else{
+                $phone = '3223300316';
+                $email = 'info@batrosmarina.com';
+            }
+
+        }
+        elseif( Cookie::get('agent') != null ){
+            $agent_name = Cookie::get('agent');
+            $agent = $agents->where('name', $agent_name)->first();
+
+            if( isset($agent) ){
+                $phone = $agent->phone;
+                $email = $agent->email;
+                $profile = $agent->getFirstMedia('profile');
+            }
+            else{
+                $phone = '3223300316';
+                $email = 'info@batrosmarina.com';
+            }
+
+        }
+        else{
+            $phone = '3223300316';
+            $email = 'info@batrosmarina.com';
+        }
+
+    @endphp
+
+    {{-- Modal Ultimos dias 
+    <div class="modal fade" id="lastDaysModal" tabindex="-1" aria-labelledby="lastDaysModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-blue text-white">
+                <div class="modal-header">
+                    <div class="modal-title fs-5" id="lastDaysModalLabel">{{__('Últimos días de precios bajos')}}</div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0 position-relative">
+                    
+                    <img src="{{asset('/img/ultimos-dias-new.webp')}}" alt="Últimos días de precios bajos" class="w-100">
+
+                    <div class="row position-absolute top-0 start-0 h-100">
+
+                        <div class="col-12 align-self-center text-center text-white">
+
+                            <div class="fs-2 text-uppercase fw-bold" style="text-shadow: 2px 2px 4px #000000;">{{__('¡Últimos 2 días!')}}</div>
+                            <div class="fs-5 text-uppercase" style="text-shadow: 2px 2px 4px #000000;">{{__('Precios desde')}}</div>
+                            <div class="fs-1 fw-bold" style="text-shadow: 2px 2px 4px #000000;">$5,152,000 <span class="fs-6 fw-light">MXN</span></div>
+
+                            <div class="mb-3" style="font-size:10px; text-shadow: 2px 2px 4px #000000;">{{__('Precio válido hasta el 31 de Marzo 2023')}}</div>
+
+                            <a href="https://wa.me/52{{$phone}}?text={{__('Hola vengo del sitio web de Batros Marina Residences')}}" target="_blank" rel="noopener noreferrer" class="btn btn-blue rounded-3 fs-5 fw-bold">
+                                <i class="fa-brands fa-whatsapp"></i> {{__('Conversar Ahora')}}
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>--}}
+
+
+@endsection
+
+@section('javascript')
+    <script>
+
+        // Verifica si la pantalla es menor de 768px
+        if (window.matchMedia('(max-width: 768px)').matches) {
+            
+            // Obtiene el elemento que deseas eliminar
+            var video = document.getElementById('home-video');
+
+            // Verifica si el elemento existe antes de intentar eliminarlo
+            if (video) {
+                video.remove();
+            }
+        }
+
+        /* document.addEventListener("DOMContentLoaded", function(event) {
+            const lastDaysModal = new bootstrap.Modal('#lastDaysModal');
+            lastDaysModal.show();
+        }); */
+
+    </script>
 @endsection

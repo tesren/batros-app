@@ -58,10 +58,20 @@ Route::post('/send-pdfmessage', [FrontPagesController::class, 'sendPdfEmail'])->
 
 Route::redirect('/login', '/nova/login', 301);
 
-/* Route::get('/optimize', function () {
+Route::get('/optimize', function () {
     Artisan::call('optimize');
     return 'Optimization complete.';
-}); */
+})->name('artisan.optimize');
+
+Route::get('/route-cache', function () {
+    Artisan::call('route:cache');
+    return 'Route cache completed.';
+})->name('artisan.route');
+
+Route::get('/config-cache', function () {
+    Artisan::call('config:cache');
+    return 'Config cache completed.';
+})->name('artisan.config');
 
 
 //cookies

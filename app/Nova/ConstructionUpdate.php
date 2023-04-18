@@ -2,13 +2,14 @@
 
 namespace App\Nova;
 
-use Illuminate\Http\Request;
+use Laravel\Nova\Panel;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Http\Requests\NovaRequest;
+use Illuminate\Http\Request;
+use Laravel\Nova\Fields\URL;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
-use Laravel\Nova\Panel;
 
 class ConstructionUpdate extends Resource
 {
@@ -71,7 +72,7 @@ class ConstructionUpdate extends Resource
             Text::make('Descripción', 'description')->help('Pequeña descripción de lo que se hizo en la obra de construcción')->nullable(),
             Text::make('Description', 'description_en')->help('Pequeña descripción de lo que se hizo en la obra de construcción en INGLÉS')->nullable(),
 
-            new Panel('Imágenes', $this->imageFields()),
+            new Panel('Imágenes y Videos', $this->imageFields()),
         ];
     }
 
@@ -80,6 +81,13 @@ class ConstructionUpdate extends Resource
         return [
             Images::make('Portada', 'portraitc')->hideFromIndex()->rules('required')->enableExistingMedia(),
             Images::make('Galería', 'galleryc')->hideFromIndex()/*->rules('required')*/->enableExistingMedia(),
+            URL::make('Video', 'video_link')->help('Pegue el link del video de Youtube')->placeholder('Enlace de Youtube')->nullable()
+            ->displayUsing(
+                function($value){
+                    return 'Ver Video';
+                }
+            ),
+
         ];
 
     }
