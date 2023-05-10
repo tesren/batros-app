@@ -26,7 +26,7 @@ class FrontPagesController extends Controller
             'name'       => 'required|string|min:1|max:255',
             'email'      => 'required|email|string|max:255',
             'messsage'    => 'nullable|string|max:500',
-            'g-recaptcha-response' => 'recaptcha|required',
+            //'g-recaptcha-response' => 'recaptcha|required',
         ]);
 
         if ( $validator->fails() ) {

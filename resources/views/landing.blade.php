@@ -7,8 +7,13 @@
     <title>Batros Marina Residences - {{__('Preventa de condominios de lujo en Marina Vallarta')}}</title>
     <meta name="description" content="{{__('Batros Marina Residences consta de tan solo 35 condominios de lujo, con modelos de 1, 2 y 3 recámaras distribuidas en 6 niveles de departamentos y una terraza con las mejores amenidades')}}">
     @include('shared.favicon')
+
+    <link rel="preload" href="{{asset('css/bootstrap.min.css')}}" as="style"> 
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+
+    <link rel="preload" href="{{asset('css/all.min.css')}}" as="style"> 
     <link rel="stylesheet" href="{{asset('css/all.min.css')}}">
+
     <link rel="stylesheet" href="{{asset('css/fancybox.css')}}">
     <link rel="stylesheet" href="{{asset('css/batros.css')}}">
 </head>
@@ -16,18 +21,21 @@
 
 
     <div class="position-relative">
-        
-        {{-- <img class="w-100" src="{{asset('img/home-landing.jpg')}}" alt="Batros Marina Residences" style="height: 90vh; object-fit:cover; z-index:1;"> --}}
+        <picture>
+            <source type="image/jpg" media="all and (max-width:768px)" srcset="{{ asset('/img/home-landing-mobile.webp') }}">
+            <source type="image/jpg" media="all and (min-width:769px)" srcset="{{ asset('/img/home-landing.webp') }}">
 
+            <img class="w-100" src="{{asset('/img/home-landing.webp')}}" alt="Batros Marina Residences" style="height: 90vh; object-fit:cover; z-index:1;">
+        </picture>
 
-        <video src="{{asset('videos/batros-home.m4v')}}" poster="{{asset('img/home-landing.jpg')}}" autoplay loop muted class="w-100" style="height: 90vh; object-fit:cover; z-index:1;"></video>
+        {{-- <video src="{{asset('videos/batros-home.m4v')}}" poster="{{asset('img/home-landing.jpg')}}" autoplay loop muted class="w-100" style="height: 90vh; object-fit:cover; z-index:1;"></video> --}}
 
         <div class="bg-blue-gradient"></div>
 
         <div class="row justify-content-center position-absolute top-0 start-0 w-100 h-100" style="z-index: 2;">
         
             <div class="col-10 col-lg-6 col-xl-3 text-center align-self-center mb-5">
-                <img src="{{asset('/img/batros-logo-white-vertical.png')}}" alt="Batros Marina Residences Logo" class="w-100">
+                <img src="{{asset('/img/batros-logo-white-vertical.webp')}}" alt="Batros Marina Residences Logo" class="w-100">
 
                 <a href="https://youtu.be/iMEDZ_dCHK4" data-fancybox="video-batros" class="btn btn-blue">
                     <i class="fa-solid fa-play"></i> {{__('Ver Video')}}
@@ -41,16 +49,56 @@
             <h1 class="text-white fs-2 mb-5 fw-light">{{__('Continúa escribiendo tu historia en Batros Marina Residences…')}}</h1>
         </div>
 
-        <img width="330px" class="d-none d-lg-block position-absolute start-0" src="{{asset('img/feather.png')}}" alt="" style="z-index: 5; top:80%; transform: scaleX(-1);">
+        <img width="330px" class="d-none d-lg-block position-absolute start-0" src="{{asset('img/feather.webp')}}" alt="" style="z-index: 5; top:80%; transform: scaleX(-1);" loading="lazy">
 
-        <img width="330px" class="d-none d-lg-block position-absolute end-0" src="{{asset('img/feather.png')}}" alt="" style="z-index: 5; top:80%;">
+        <img width="330px" class="d-none d-lg-block position-absolute end-0" src="{{asset('img/feather.webp')}}" alt="" style="z-index: 5; top:80%;" loading="lazy">
 
     </div>
 
     {{-- Descripción --}}
     <div class="row justify-content-center pt-5 mb-6" id="info">
+
+        {{-- Formulario --}}
+        <div class="col-12 col-lg-6 col-xl-5 text-center my-5">
+            <div class="collapse show" id="collapseForm">
+
+                <div class="card position-relative text-white">
+                    <button type="button" class="btn-close position-absolute end-0 top-0 btn-close-white mt-3 me-3" data-bs-toggle="collapse" data-bs-target="#collapseForm" aria-expanded="true" aria-controls="collapseForm" aria-label="Close"></button>
+
+                    <div class="card-header">
+                        <div class="text-center fs-2">¿Necesitas más información?</div>
+                        <div class="text-center fs-4">Déjanos tu información de contacto</div>
+                    </div>
+
+                    <div class="card-body">        
+                        <form action="{{route('send.email')}}#contact-form" method="post" class="pt-2 pt-lg-4">
+                            @csrf
+                            <input type="text" class="form-contact mb-3" name="name" id="name" placeholder="{{__('Nombre')}}" required maxlength="255" value="{{ old('name') }}">
+                            <input type="email" class="form-contact mb-3" name="email" id="email" placeholder="{{__('Correo')}}" required maxlength="255" value="{{ old('email') }}">
+                            <x-honeypot />
+                            <input type="number" class="form-contact mb-3" name="phone" id="phone" placeholder="{{__('Teléfono')}}" min="0" value="{{ old('phone') }}">
+                            <textarea class="form-contact mb-3" name="message" id="message" cols="30" rows="6" placeholder="{{__('Mensaje')}}" maxlength="255">{{ old('message') }}</textarea>
+                            <input type="hidden" name="url" value="{{url()->current()}}">
+                            <input type="hidden" name="utm_campaign" value="{{ request()->query('utm_campaign') }}">
+                            <div class="row justify-content-center mt-4">
+                                <button type="submit" class="btn btn-blue col-12 col-lg-6 rounded-4 text-uppercase">{{__('Enviar')}}</button>
+                            </div>
+                        </form>
+                      </div>
+                </div>
+              
+            </div>
+        </div>
+
+        <div class="w-100"></div>
+
         <div class="col-12 col-lg-10 col-xl-5 mb-4">
-            <img src="{{asset('img/description-img.jpg')}}" alt="Batros Marina Residences" class="w-100 px-0 rounded-2 shadow-6" loading="lazy">
+            <picture>
+                <source type="image/jpg" media="all and (max-width:768px)" srcset="{{ asset('/img/description-img-mobile.webp') }}">
+                <source type="image/jpg" media="all and (min-width:769px)" srcset="{{ asset('/img/description-img.webp') }}">
+    
+                <img src="{{asset('/img/description-img.webp')}}" alt="Batros Marina Residences" class="w-100 px-0 rounded-2 shadow-6" loading="lazy">
+            </picture>
         </div>
 
         <div class="w-100"></div>
@@ -68,28 +116,28 @@
 
         <div class="row justify-content-center text-lightblue mb-5">
             <div class="col-6 col-xl-2">
-                <img src="{{asset('img/amenities/rooftop.png')}}" alt="{{__('Terraza 360')}}" class="col-12 col-lg-9" loading="lazy">
+                <img src="{{asset('img/amenities/rooftop.webp')}}" alt="{{__('Terraza 360')}}" class="col-12 col-lg-9" loading="lazy">
                 <div class="fs-3 fw-light">{{__('Terraza 360')}}°</div>
             </div>
             <div class="col-6 col-xl-2">
-                <img src="{{asset('img/amenities/bbq.png')}}" alt="{{__('Asador y Bar')}}" class="col-12 col-lg-9" loading="lazy">
+                <img src="{{asset('img/amenities/bbq.webp')}}" alt="{{__('Asador y Bar')}}" class="col-12 col-lg-9" loading="lazy">
                 <div class="fs-3 fw-light">{{__('Asador y Bar')}}</div>
             </div>
             <div class="col-6 col-xl-2">
-                <img src="{{asset('img/amenities/lounge.png')}}" alt="{{__('Mindfulness Lounge')}}" class="col-12 col-lg-9" loading="lazy">
+                <img src="{{asset('img/amenities/lounge.webp')}}" alt="{{__('Mindfulness Lounge')}}" class="col-12 col-lg-9" loading="lazy">
                 <div class="fs-3 fw-light">{{__('Mindfulness Lounge')}}</div>
             </div>
             <div class="col-6 col-xl-2">
-                <img src="{{asset('img/amenities/gym.png')}}" alt="{{__('Gimnasio')}}" class="col-12 col-lg-9" loading="lazy">
+                <img src="{{asset('img/amenities/gym.webp')}}" alt="{{__('Gimnasio')}}" class="col-12 col-lg-9" loading="lazy">
                 <div class="fs-3 fw-light">{{__('Gimnasio')}}</div>
             </div>
             <div class="col-6 col-xl-2">
-                <img src="{{asset('img/amenities/pool.png')}}" alt="{{__('Alberca Sky')}}" class="col-12 col-lg-9" loading="lazy">
+                <img src="{{asset('img/amenities/pool.webp')}}" alt="{{__('Alberca Sky')}}" class="col-12 col-lg-9" loading="lazy">
                 <div class="fs-3 fw-light">{{__('Alberca Sky')}}</div>
             </div>
         </div>
 
-        <img width="250px" class="d-none d-lg-block position-absolute start-0" src="{{asset('img/feather.png')}}" alt="" style="z-index: 5; top:60%; transform: scaleX(-1);" loading="lazy">
+        <img width="250px" class="d-none d-lg-block position-absolute start-0" src="{{asset('img/feather.webp')}}" alt="" style="z-index: 5; top:60%; transform: scaleX(-1);" loading="lazy">
 
     </div>
 
@@ -105,8 +153,8 @@
         </div>
 
         <div class="col-12 col-lg-4 col-xl-3 position-relative">
-            <img src="{{asset('img/golf.jpg')}}" alt="Golf Marina Vallarta" class="w-100 rounded-2 shadow-6 position-relative" style="z-index:5;" loading="lazy">
-            <img width="230px" class="d-none d-lg-block position-absolute top-0" src="{{asset('img/feather.png')}}" alt="" style="z-index: 1; left:75%; transform: rotate(180deg);" loading="lazy">
+            <img src="{{asset('img/golf.webp')}}" alt="Golf Marina Vallarta" class="w-100 rounded-2 shadow-6 position-relative" style="z-index:5;" loading="lazy">
+            <img width="230px" class="d-none d-lg-block position-absolute top-0" src="{{asset('img/feather.webp')}}" alt="" style="z-index: 1; left:75%; transform: rotate(180deg);" loading="lazy">
         </div>
 
     </div>
@@ -114,7 +162,7 @@
     {{-- Ubicación --}}
     <div class="svg-container d-none d-lg-block">
 
-        <img class="w-100" src="{{asset('img/batros-map.jpg')}}" alt="Batros Marina Residences Location">
+        <img class="w-100" src="{{asset('img/batros-map.webp')}}" alt="Batros Marina Residences Location" loading="lazy">
 
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-content" viewBox="0 0 1920 1081">
             {{-- Título --}}
@@ -167,7 +215,7 @@
 
     <div class="d-block d-lg-none text-center">
         <h3 class="fs-1 text-lightblue mb-4">{{__('Ubicación')}}</h3>
-        <img src="{{ asset('/img/mapa-esp.jpg') }}" alt="Batros Location" class="w-100">
+        <img src="{{ asset('/img/mapa-esp.webp') }}" alt="Batros Location" class="w-100" loading="lazy">
     </div>
 
 
@@ -221,7 +269,7 @@
         <div class="row justify-content-evenly mb-5">
     
             <div class="col-12 col-lg-4">
-                <img src="{{asset('img/century.svg')}}" alt="Century 21 Ocean Realty" class="col-10 col-lg-8 mb-4">
+                <img src="{{asset('img/century.svg')}}" alt="Century 21 Ocean Realty" class="col-10 col-lg-8 mb-4" loading="lazy">
                 <div class="d-flex">
                     <div class="me-3">
                         <i class="fa-solid fa-3x text-white fa-phone"></i>
@@ -262,22 +310,15 @@
     </footer>
 
     {{-- Whatsapp Button --}}
-    <a id="floating_whatsapp" target="_blank" rel="noopener norefferer" href="https://wa.me/52{{$phone}}?text={{__('Hola vengo del sitio web de Batros Marina Residences')}}" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="{{__('Contactar por WhatsApp')}}" class="shadow-4 text-center m-4 position-fixed bottom-0 end-0 d-block rounded-circle whatsapp landing" style="margin-bottom:96px;">
+    <a id="floating_whatsapp" target="_blank" rel="noopener norefferer" href="https://wa.me/52{{$phone}}?text={{__('Hola vengo del sitio web de Batros Marina Residences')}}" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="{{__('Contactar por WhatsApp')}}" class="shadow-4 text-center m-4 position-fixed bottom-0 end-0 d-block rounded-circle whatsapp landing" style="margin-bottom:96px; z-index:100;">
         <i class="fa-brands fa-3x fa-whatsapp" style="line-height: 1.2;"></i>
     </a>
     
-    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('js/fancybox.umd.js')}}"></script>
-
-    <script>
-        const wp_button = document.getElementById('floating_whatsapp');
-        const wp_tooltip = new bootstrap.Tooltip(wp_button);
-
-        window.addEventListener("load", (event) => {
-            //console.log("page is fully loaded");
-            wp_tooltip.show();
-        });
-    </script>
+    <script defer src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+    <script defer src="{{asset('js/fancybox.umd.js')}}"></script>
+    <!-- Third party js -->
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-X92Y5NBQXW"></script>
+    <script defer src="{{asset('js/third-party.js'); }}"></script>
 
 </body>
 </html>

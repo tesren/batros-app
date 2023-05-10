@@ -22,3 +22,14 @@ s.parentNode.insertBefore(t,s)}(window,document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '472886655000133'); 
 fbq('track', 'PageView');
+
+
+const wp_button = document.getElementById('floating_whatsapp');
+if(wp_button){
+    const wp_tooltip = new bootstrap.Tooltip(wp_button);
+
+    window.addEventListener("load", (event) => {
+        //console.log("page is fully loaded");
+        wp_tooltip.show();
+    });
+}

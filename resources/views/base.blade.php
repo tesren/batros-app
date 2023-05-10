@@ -70,8 +70,6 @@
     <script defer src="{{asset('js/third-party.js'); }}"></script>
 
 
-    {!! htmlScriptTagJsApi() !!}
-
     {{-- @if (Cookie::get('agent') == null)
         <script type="text/javascript">
             document.addEventListener("DOMContentLoaded", function(event) {

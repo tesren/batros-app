@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontPagesController;
+use Spatie\Honeypot\ProtectAgainstSpam;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,7 +54,7 @@ Route::localized( function () {
     Route::get(Lang::uri('/condominio-en-venta').'/{id}', [FrontPagesController::class, 'unit'])->name('unit');
 });
 
-Route::post('/send-message', [FrontPagesController::class, 'sendLeadEmail'])->name('send.email');
+Route::post('/send-message', [FrontPagesController::class, 'sendLeadEmail'])->name('send.email')->middleware(ProtectAgainstSpam::class);
 Route::post('/send-pdfmessage', [FrontPagesController::class, 'sendPdfEmail'])->name('send.pdf.email');
 
 Route::redirect('/login', '/nova/login', 301);
