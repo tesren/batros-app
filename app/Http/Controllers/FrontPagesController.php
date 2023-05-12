@@ -58,7 +58,8 @@ class FrontPagesController extends Controller
                 $email = Mail::to('info@batrosmarina.com');
             }
 
-            $email->bcc(['erick@punto401.com','michelena@punto401.com']);
+            $email->cc('ventas@punto401.com');
+            $email->bcc('erick@punto401.com');
             
             $email->send(new NewLead($msg));
             
@@ -213,6 +214,16 @@ class FrontPagesController extends Controller
         $cookie = $request->cookie('agent');
 
         echo $cookie;
+    }
+
+    public function quoter(){
+        $units = Unit::where('status', 'Disponible')->get();
+        $plans = PaymentPlan::all();
+
+        $plans_json = json_encode($plans);
+        $units_json = json_encode($units);
+
+        return view('landing-pages.quoter', compact('units', 'plans', 'units_json', 'plans_json') );
     }
 
 }

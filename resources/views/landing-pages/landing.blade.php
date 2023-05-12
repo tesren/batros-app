@@ -21,6 +21,20 @@
 
 
     <div class="position-relative">
+
+        {{-- Botón de lenguaje --}}
+        <div class="position-absolute top-0 end-0 m-3 m-lg-4" style="z-index: 10;">
+            @if ( app()->getLocale() == 'es' )
+                <a class="link-light text-decoration-none p-2 fs-5" href="{{$url = route('en.landing', request()->query(), true, 'en');}}">
+                    <i class="fa-solid fa-globe"></i> {{__('EN')}}
+                </a>
+            @else
+                <a class="link-light text-decoration-none p-2 fs-5" href="{{$url = route('es.landing', request()->query(), true, 'es');}}">
+                    <i class="fa-solid fa-globe"></i> {{__('ES')}}
+                </a>
+            @endif
+        </div>
+
         <picture>
             <source type="image/jpg" media="all and (max-width:768px)" srcset="{{ asset('/img/home-landing-mobile.webp') }}">
             <source type="image/jpg" media="all and (min-width:769px)" srcset="{{ asset('/img/home-landing.webp') }}">
@@ -66,8 +80,8 @@
                     <button type="button" class="btn-close position-absolute end-0 top-0 btn-close-white mt-3 me-3" data-bs-toggle="collapse" data-bs-target="#collapseForm" aria-expanded="true" aria-controls="collapseForm" aria-label="Close"></button>
 
                     <div class="card-header">
-                        <div class="text-center fs-2">¿Necesitas más información?</div>
-                        <div class="text-center fs-4">Déjanos tu información de contacto</div>
+                        <div class="text-center fs-2">{{__('¿Necesitas más información?')}}</div>
+                        <div class="text-center fs-4">{{__('Déjanos tu información de contacto')}}</div>
                     </div>
 
                     <div class="card-body">        
@@ -218,6 +232,12 @@
         <img src="{{ asset('/img/mapa-esp.webp') }}" alt="Batros Location" class="w-100" loading="lazy">
     </div>
 
+    <div class="mb-6 text-center text-white py-5 bg-darkblue">
+        <h3 class="fs-1">{{__('Deseas cotizar una Unidad?')}}</h3>
+        <hr class="text-white col-10 col-lg-3 mb-2 mx-auto" style="opacity: 1; height:2px;">
+        <div class="fs-5 mb-3">{{__('Visita nuestro cotizador de pagos y unidades')}}</div>
+        <a href="{{route('quoter')}}" class="btn btn-blue fs-4 px-4">{{__('Visitar')}}</a>
+    </div>
 
     @include('shared.contact-form')
 
@@ -270,16 +290,8 @@
     
             <div class="col-12 col-lg-4">
                 <img src="{{asset('img/century.svg')}}" alt="Century 21 Ocean Realty" class="col-10 col-lg-8 mb-4" loading="lazy">
-                <div class="d-flex">
-                    <div class="me-3">
-                        <i class="fa-solid fa-3x text-white fa-phone"></i>
-                    </div>
-                    <div>
-                        <a id="phone_footer" class="link-light d-block text-decoration-none fs-5" href="tel:+52{{$phone}}">+52 {{$phone}}</a>
-                    </div>
-                </div>
                 <div class="d-flex mt-4">
-                    <i class="fa-solid fa-envelope fa-3x text-white me-3"></i>
+                    <i class="fa-solid fa-envelope fa-2x text-white me-3"></i>
                     <a id="mail_footer" href="mailto:{{$email}}" class="link-light d-block align-self-center text-decoration-none">{{$email}}</a>
                 </div>
             </div>
@@ -313,8 +325,15 @@
     <a id="floating_whatsapp" target="_blank" rel="noopener norefferer" href="https://wa.me/52{{$phone}}?text={{__('Hola vengo del sitio web de Batros Marina Residences')}}" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="{{__('Contactar por WhatsApp')}}" class="shadow-4 text-center m-4 position-fixed bottom-0 end-0 d-block rounded-circle whatsapp landing" style="margin-bottom:96px; z-index:100;">
         <i class="fa-brands fa-3x fa-whatsapp" style="line-height: 1.2;"></i>
     </a>
-    
+
     <script defer src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+    <script>
+        function removeAnimation(id){
+            var icon = document.getElementById(id);
+            icon.classList.toggle("fa-bounce");
+        }
+    </script>
+    
     <script defer src="{{asset('js/fancybox.umd.js')}}"></script>
     <!-- Third party js -->
     <script defer src="https://www.googletagmanager.com/gtag/js?id=G-X92Y5NBQXW"></script>

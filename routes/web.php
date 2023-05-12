@@ -42,8 +42,14 @@ Route::localized( function () {
     })->name('amenities');
 
     Route::get('/landing-page', function () {
-        return view('landing');
+        return view('landing-pages.landing');
     })->name('landing');
+
+    Route::get('/cotizador', [FrontPagesController::class, 'quoter'] )->name('quoter');
+
+    Route::get('/estilo-de-vida-landing', function () {
+        return view('landing-pages.lifestyle');
+    })->name('landing.lifestyle');
     
     Route::get(Lang::uri('/inventario-condominios'), [FrontPagesController::class, 'inventory'])->name('inventory');
     

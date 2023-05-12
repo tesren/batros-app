@@ -33,3 +33,6 @@ if(wp_button){
         wp_tooltip.show();
     });
 }
+
+const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
+const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
