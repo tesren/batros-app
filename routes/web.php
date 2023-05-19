@@ -50,6 +50,10 @@ Route::localized( function () {
     Route::get('/estilo-de-vida-landing', function () {
         return view('landing-pages.lifestyle');
     })->name('landing.lifestyle');
+
+    Route::get('/agendar-cita', function () {
+        return view('landing-pages.appointment');
+    })->name('landing.appointment');
     
     Route::get(Lang::uri('/inventario-condominios'), [FrontPagesController::class, 'inventory'])->name('inventory');
     
@@ -61,6 +65,8 @@ Route::localized( function () {
 });
 
 Route::post('/send-message', [FrontPagesController::class, 'sendLeadEmail'])->name('send.email')->middleware(ProtectAgainstSpam::class);
+Route::post('/create-appointment', [FrontPagesController::class, 'sendDateEmail'])->name('create.appointment')->middleware(ProtectAgainstSpam::class);
+
 Route::post('/send-pdfmessage', [FrontPagesController::class, 'sendPdfEmail'])->name('send.pdf.email');
 
 Route::redirect('/login', '/nova/login', 301);

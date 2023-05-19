@@ -95,10 +95,15 @@
                             <input type="hidden" name="url" value="{{url()->current()}}">
                             <input type="hidden" name="utm_campaign" value="{{ request()->query('utm_campaign') }}">
                             <div class="row justify-content-center mt-4">
-                                <button type="submit" class="btn btn-blue col-12 col-lg-6 rounded-4 text-uppercase">{{__('Enviar')}}</button>
+                                <button type="submit" @if(session('message')) disabled @endif class="btn btn-blue col-12 col-lg-6 rounded-4 text-uppercase">{{__('Enviar')}}</button>
                             </div>
                         </form>
-                      </div>
+                    </div>
+                    @if(session('message')) 
+                        <div class="card-footer text-white fs-5 fw-bold text-center">
+                            {{__(session('message'))}}
+                        </div>
+                    @endif
                 </div>
               
             </div>

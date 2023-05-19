@@ -24,11 +24,11 @@
         {{-- Botón de lenguaje --}}
         <div class="position-absolute top-0 end-0 m-3 m-lg-4" style="z-index: 10;">
             @if ( app()->getLocale() == 'es' )
-                <a class="link-light text-decoration-none p-2 fs-5" href="{{$url = route('en.quoter', request()->query(), true, 'en');}}">
+                <a class="btn btn-blue text-decoration-none fs-5" href="{{$url = route('en.quoter', request()->query(), true, 'en');}}">
                     <i class="fa-solid fa-globe"></i> {{__('EN')}}
                 </a>
             @else
-                <a class="link-light text-decoration-none p-2 fs-5" href="{{$url = route('es.quoter', request()->query(), true, 'es');}}">
+                <a class="btn btn-blue text-decoration-none fs-5" href="{{$url = route('es.quoter', request()->query(), true, 'es');}}">
                     <i class="fa-solid fa-globe"></i> {{__('ES')}}
                 </a>
             @endif
@@ -54,8 +54,8 @@
         </div>
 
         <div class="position-absolute bottom-0 start-0 w-100 text-center" style="z-index: 3;">
-            <a href="#info" class="d-block link-light text-decoration-none fs-1 mb-3"><i class="fa-solid fa-circle-chevron-down"></i></a>
-            <h1 class="text-white fs-1 mb-5 fw-light">{{__('Cotizador de pagos de unidades')}}</h1>
+            <a href="#info" class="d-block link-light text-decoration-none fs-1 mb-3"><i class="fa-solid fa-bounce fa-circle-chevron-down"></i></a>
+            <h1 class="text-white fs-1 mb-5 fw-light">{{__('Compara y elige el plan ideal')}}</h1>
         </div>
 
         <img width="330px" class="d-none d-lg-block position-absolute start-0" src="{{asset('img/feather.webp')}}" alt="" style="z-index: 5; top:80%; transform: scaleX(-1);" loading="lazy">
@@ -68,14 +68,17 @@
         <div class="col-11 col-lg-4 text-white card p-3 align-self-center mb-3 mb-lg-0">
             <form action="" method="get">
 
-                <label for="unit_id">{{__('Selecciona una Unidad')}}</label>
+                <label for="unit_id" class="fw-bold">{{__('Selecciona una Unidad')}}</label>
                 <select name="unit_id" id="unit_id" class="form-select mb-3" onchange="updateCalculations()">
+                        <option value="" selected>{{__('Selecciona una Unidad')}}</option>
                     @foreach ($units as $unit)
-                        <option value="{{$unit->id}}">{{__('Unidad')}} - {{$unit->name}}</option>
+                        <option value="{{$unit->id}}">{{__('Unidad')}} {{$unit->name}} - {{$unit->bedrooms}} {{__('Rec')}}, {{$unit->area}}m²</option>
                     @endforeach
                 </select>
 
-                <label for="plan_id">{{__('Selecciona el Plan de Pagos')}}</label>
+                {{-- <a href="#unitsModal" data-bs-toggle="modal" data-bs-target="#unitsModal" class="link-light d-block mb-3">Conoce las Unidades</a> --}}
+
+                <label for="plan_id" class="fw-bold">{{__('Selecciona el Plan de Pagos')}}</label>
                 <select name="plan_id" id="plan_id" class="form-select mb-2" onchange="updateCalculations()">
                     @foreach ($plans as $plan)
                         <option value="{{$plan->id}}">{{__('Plan')}} - {{$plan->name}}</option>
@@ -137,7 +140,76 @@
         </div>
     </div>
 
-    @include('shared.contact-form')
+    {{-- Modal de unidades --}}
+    <div class="modal fade" id="unitsModal" tabindex="-1" aria-labelledby="unitsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="unitsModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                ...
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="position-relative" id="contact-form">
+
+    {{-- Formulario de contacto --}}
+    <div class="row justify-content-evenly my-6">
+    
+        <div class="col-11 col-lg-6 col-xl-4 mb-6 card p-3" style="z-index: 10;">
+
+            <h5 class="fs-2 fw-light text-white text-center">{{__('Contacta un agente')}} <br>{{__('para más información')}} </h5>
+            <hr class="text-white w-100 mb-4 mx-auto" style="opacity: 1; height:2px;">
+
+            <form action="{{route('send.email')}}#contact-form" method="post" class="pt-2 pt-lg-4">
+                @csrf
+                <input type="text" class="form-contact mb-3" name="name" id="name" placeholder="{{__('Nombre')}}" required maxlength="255" value="{{ old('name') }}">
+                <input type="email" class="form-contact mb-3" name="email" id="email" placeholder="{{__('Correo')}}" required maxlength="255" value="{{ old('email') }}">
+                <x-honeypot />
+                <input type="number" class="form-contact mb-3" name="phone" id="phone" placeholder="{{__('Teléfono')}}" min="0" value="{{ old('phone') }}">
+                <textarea class="form-contact mb-3" name="message" id="message" cols="30" rows="6" placeholder="{{__('Mensaje')}}" maxlength="255">{{ old('message') }}</textarea>
+                <input type="hidden" name="url" value="{{url()->current()}}">
+                <input type="hidden" name="utm_campaign" value="{{ request()->query('utm_campaign') }}">
+                <div class="row justify-content-center mt-4">
+                    <button type="submit" @if(session('message')) disabled @endif class="btn btn-blue col-12 col-lg-6 rounded-4 text-uppercase">{{__('Enviar')}}</button>
+                </div>
+            </form>
+
+            @if (session('message'))
+                <div class="fs-5 text-lightblue text-center mt-4">
+                    <i class="fa-regular fa-circle-check"></i> {{__(session('message'))}}
+                </div>
+            @endif
+
+            @php
+                $errors = session('errors');
+            @endphp
+            @if ($errors)
+                @foreach ($errors as $error)
+                    <div class="fs-5 text-lightblue text-center my-3">
+                        <i class="fa-regular fa-circle-xmark"></i> {{$error}}
+                    </div>
+                @endforeach
+            @endif
+
+        </div>
+    
+    </div>
+
+    <img width="260px" class="d-none d-lg-block position-absolute end-0 top-50" src="{{asset('img/feather.webp')}}" alt="" style="z-index: 5;" loading="lazy">
+
+</div>
+
+
 
     {{-- Form Modal --}}
     <div class="modal fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">

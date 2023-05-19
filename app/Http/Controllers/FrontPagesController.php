@@ -68,6 +68,45 @@ class FrontPagesController extends Controller
         }
     }
 
+    public function sendDateEmail(Request $request){
+
+        $validator = Validator::make( $request->all(), [
+            'name'       => 'required|string|min:1|max:255',
+            'email'      => 'required|email|string|max:255',
+            'messsage'    => 'nullable|string|max:500',
+        ]);
+
+        if ( $validator->fails() ) {
+            return redirect()->back()->withInput()->with(['errors'=> $validator->errors()->all()]);
+        }
+        else{
+            $msg = new Message();
+
+            $msg->name = $request->input('name');
+            $msg->email = $request->input('email');
+            $msg->phone = $request->input('phone');
+            $msg->content = $request->input('message');
+            $msg->url = $request->input('url');
+
+            $msg->save();
+
+            $msg->ap_date = $request->input('ap_date');
+            $msg->ap_time = $request->input('ap_time');
+            $msg->contact_method = $request->input('contact_method');
+
+            
+            $email = Mail::to('info@batrosmarina.com');
+
+            $email->cc('ventas@punto401.com');
+            $email->bcc('erick@punto401.com');
+            
+            $email->send(new NewLead($msg));
+            
+
+            return redirect()->back()->with('message', 'Gracias, su cita fue reservada');
+        }
+    }
+
     public function sendPdfEmail(Request $request){
         
         $validator = Validator::make( $request->all(), [
