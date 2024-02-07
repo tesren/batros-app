@@ -109,7 +109,7 @@
 
             if (cookieValue == null) {
                 // si la cookie no existe
-                cookiesModal.show();
+                //cookiesModal.show();
                 console.log(cookieValue);
 
             } else {

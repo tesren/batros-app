@@ -42,7 +42,38 @@
     {{-- Descripción --}}
     <div class="row justify-content-center pt-5 mb-6" id="info">
         <div class="col-12 col-lg-10 col-xl-5 mb-4">
-            <img src="{{asset('img/description-img.webp')}}" alt="Batros Marina Residences" class="w-100 px-0 rounded-2 shadow-6" loading="lazy">
+
+            <div id="carouselHome" class="carousel slide carousel-dark">
+                <div class="carousel-inner">
+
+                  <div class="carousel-item active">
+                    <img src="{{asset('img/description-img.webp')}}" alt="Fachada de Batros Marina Residences" class="w-100 px-0 rounded-2 shadow-6" loading="lazy">
+                  </div>
+
+                  <div class="carousel-item">
+                    <img src="{{ asset('img/rooftop.jpg') }}" class="w-100 px-0 rounded-2 shadow-6" alt="Rooftop de Batros Marina Residences" loading="lazy">
+                  </div>
+
+                  <div class="carousel-item">
+                    <img src="{{ asset('img/rooftop-building.jpg') }}" class="w-100 px-0 rounded-2 shadow-6" alt="Rooftop de Batros Marina Residences" loading="lazy">
+                  </div>
+
+                  <div class="carousel-item">
+                    <img src="{{ asset('/img/roof-jacuzzi.webp') }}" class="w-100 px-0 rounded-2 shadow-6" alt="Rooftop de Batros Marina Residences" loading="lazy">
+                  </div>
+
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselHome" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+
         </div>
 
         <div class="w-100"></div>

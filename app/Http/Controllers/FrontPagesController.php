@@ -136,7 +136,7 @@ class FrontPagesController extends Controller
 
             $email = Mail::to('info@batrosmarina.com');
 
-            $email->bcc(['erick@punto401.com', 'michelena@punto401.com']);
+            $email->bcc(['erick@punto401.com', 'ventas@punto401.com']);
             
             $email->send(new PdfRequest($msg));
 
@@ -174,7 +174,7 @@ class FrontPagesController extends Controller
 
     public function constructionPage(){
 
-        $updates = ConstructionUpdate::all();
+        $updates = ConstructionUpdate::orderBy('date', 'desc')->get();
 
         return view('construction', compact('updates'));
     }

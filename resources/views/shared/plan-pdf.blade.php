@@ -21,9 +21,17 @@
 <body>
 
     @php
-        $enganche = ($unit->price) * ($plan->down_payment/100);
-        $closing = ($unit->price) * ($plan->closing_payment/100);
-        $meses = ($unit->price) * ($plan->months_percent/100);
+        if( isset($plan->discount) ){
+            $discount = $unit->price * ($plan->discount/100);
+            $final = $unit->price - $discount;
+        }
+        else{
+            $final = $unit->price;
+        }
+
+        $enganche = ($final) * ($plan->down_payment/100);
+        $closing = ($final) * ($plan->closing_payment/100);
+        $meses = ($final) * ($plan->months_percent/100);
         if(isset($meses) and isset($plan->months_quantity)){                        
             $mes = $meses / ($plan->months_quantity);
         }else{
@@ -45,11 +53,6 @@
             </tr>
 
             @isset($plan->discount)
-                @php
-                    $discount = $unit->price * ($plan->discount/100);
-                    $final = $unit->price - $discount;
-                @endphp
-
                 <tr>
                     <td style="text-align: end;">{{__('Descuento del')}} {{$plan->discount}}%</td>
                     <td>${{ number_format($discount, 2) }} {{$unit->currency}}</td>

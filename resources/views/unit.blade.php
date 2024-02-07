@@ -91,7 +91,7 @@
                 <div class="carousel-inner">
                     @foreach ($galleryImgs as $img)
                         <div class="carousel-item @if($i == 1)active @endif">
-                            <img src="{{$img->getUrl()}}" class="d-block w-100 rounded-2" alt="{{__('Condominio')}} {{$unit->name}} {{__('Interiores')}}" style="height: 550px; object-fit:cover;">
+                            <img src="{{$img->getUrl()}}" class="d-block w-100 rounded-2" alt="{{__('Condominio')}} {{$unit->name}} {{__('Interiores')}}" style="height: 550px; object-fit:contain;">
                         </div>
                       @php $i++; @endphp
                     @endforeach
@@ -262,9 +262,17 @@
 
             @foreach ($unit->paymentPlans as $plan)
                 @php
-                    $enganche = ($unit->price) * ($plan->down_payment/100);
-                    $closing = ($unit->price) * ($plan->closing_payment/100);
-                    $meses = ($unit->price) * ($plan->months_percent/100);
+                    if( isset($plan->discount) ){
+                        $discount = $unit->price * ($plan->discount/100);
+                        $final = $unit->price - $discount;
+                    }
+                    else{
+                        $final = $unit->price;
+                    }
+
+                    $enganche = ($final) * ($plan->down_payment/100);
+                    $closing = ($final) * ($plan->closing_payment/100);
+                    $meses = ($final) * ($plan->months_percent/100);
                     if(isset($meses) and isset($plan->months_quantity)){                        
                         $mes = $meses / ($plan->months_quantity);
                     }else{
@@ -288,10 +296,6 @@
                             </div>
 
                             @isset($plan->discount)
-                                @php
-                                    $discount = $unit->price * ($plan->discount/100);
-                                    $final = $unit->price - $discount;
-                                @endphp
 
                                 <div class="d-flex justify-content-between mb-3 px-1 px-lg-3">
                                     <div>{{__('Descuento del')}} {{$plan->discount}}%</div>
