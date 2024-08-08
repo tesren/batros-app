@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Message;
-use App\Models\ConstructionUpdate;
 use App\Models\Unit;
-use App\Models\Agent;
-use App\Models\PaymentPlan;
-use App\Models\Section;
 use App\Mail\NewLead;
-use Illuminate\Support\Facades\Mail;
+use App\Models\Agent;
+use App\Models\Message;
+use App\Models\Section;
 use App\Mail\PdfRequest;
-use Illuminate\Support\Facades\Validator;
+use App\Models\PaymentPlan;
+use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\ConstructionUpdate;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 
 class FrontPagesController extends Controller
@@ -58,10 +59,30 @@ class FrontPagesController extends Controller
                 $email = Mail::to('info@batrosmarina.com');
             }
 
-            $email->cc('ventas@punto401.com');
-            $email->bcc('erick@punto401.com');
+            $email->cc( 'estefania@c21oceanrealty.com');
+            //$email->bcc('erick@punto401.com');
             
             $email->send(new NewLead($msg));
+
+
+            //nuestro webhook
+            $webhookUrl = 'https://hooks.zapier.com/hooks/catch/17441146/3c0vq7s/';
+
+            $type = 'Este mensaje fue enviado desde un formulario de contacto en el sitio web de Batros';
+
+            // Datos que deseas enviar en el cuerpo de la solicitud
+            $data = [
+                'name' => $msg->name,
+                'type' => $type,
+                'email' => $msg->email,
+                'phone' => $msg->phone,
+                'url' => $msg->url,
+                'content' => $msg->content,
+                'created_at' => $msg->created_at,
+            ];
+
+            // Enviar la solicitud POST al webhook
+            $response = Http::post($webhookUrl, $data);
             
 
             return redirect()->back()->with('message', 'Gracias, su mensaje ha sido enviado');
@@ -97,11 +118,29 @@ class FrontPagesController extends Controller
             
             $email = Mail::to('info@batrosmarina.com');
 
-            $email->cc('ventas@punto401.com');
-            $email->bcc('erick@punto401.com');
+            $email->cc( 'estefania@c21oceanrealty.com');
+            //$email->bcc('erick@punto401.com');
             
             $email->send(new NewLead($msg));
-            
+
+            //nuestro webhook
+            $webhookUrl = 'https://hooks.zapier.com/hooks/catch/17441146/3c0vq7s/';
+
+            $type = 'Un cliente está interesado en agendar una cita para Batros Marina Residences el día '.$msg->ap_date. ' a las '.$msg->ap_time;
+
+            // Datos que deseas enviar en el cuerpo de la solicitud
+            $data = [
+                'name' => $msg->name,
+                'type' => $type,
+                'email' => $msg->email,
+                'phone' => $msg->phone,
+                'url' => $msg->url,
+                'content' => $msg->content,
+                'created_at' => $msg->created_at,
+            ];
+
+            // Enviar la solicitud POST al webhook
+            $response = Http::post($webhookUrl, $data);
 
             return redirect()->back()->with('message', 'Gracias, su cita fue reservada');
         }
@@ -136,9 +175,28 @@ class FrontPagesController extends Controller
 
             $email = Mail::to('info@batrosmarina.com');
 
-            $email->bcc(['erick@punto401.com', 'ventas@punto401.com']);
+            //$email->bcc(['erick@punto401.com', 'ventas@punto401.com']);
             
             $email->send(new PdfRequest($msg));
+
+            //nuestro webhook
+            $webhookUrl = 'https://hooks.zapier.com/hooks/catch/17441146/3c0vq7s/';
+
+            $type = 'El cliente descargó el plan de pagos de una unidad';
+
+            // Datos que deseas enviar en el cuerpo de la solicitud
+            $data = [
+                'name' => $msg->name,
+                'type' => $type,
+                'email' => $msg->email,
+                'phone' => 'Sin teléfono',
+                'url' => $msg->url,
+                'content' => $msg->content,
+                'created_at' => $msg->created_at,
+            ];
+
+            // Enviar la solicitud POST al webhook
+            $response = Http::post($webhookUrl, $data);
 
 
             //creamos y guardamos PDF

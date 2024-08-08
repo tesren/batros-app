@@ -44,6 +44,16 @@
                 <a class="nav-link @if($route == 'es.about' or $route == 'en.about') active @endif" href="{{route('about', request()->query() )}}">{{__('Nosotros')}}</a>
             </li>
 
+            <li class="nav-item dropdown me-1 me-lg-4">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{__('Tour Virtual')}}
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="https://www.3d.casa/batros-d6" target="_blank" rel="noopener">{{__('Unidad')}} D6</a></li>
+                <li><a class="dropdown-item" href="https://www.3d.casa/batros-rooftop" target="_blank" rel="noopener">Rooftop</a></li>
+              </ul>
+            </li>
+
             <li class="nav-item me-1 me-lg-4">
                 <a class="nav-link @if($route == 'es.contact' or $route == 'en.contact') active @endif" href="{{route('contact', request()->query() )}}">{{__('Contacto')}}</a>
             </li>

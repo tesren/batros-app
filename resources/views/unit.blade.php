@@ -77,6 +77,16 @@
 
     </div>
 
+    {{-- Tour Virtual --}}
+    @isset($unit->virtual_tour)
+        <div class="row justify-content-center mb-5 text-lightblue">
+            <div class="col-12 col-lg-8 col-xxl-6 text-center">
+                <h3 class="fs-2">{{__('Tour Virtual')}}</h3>
+                <iframe src="{{$unit->virtual_tour}}" width="100%" height="600px" frameborder="0"></iframe>
+            </div>
+        </div>
+    @endisset
+
     {{-- Galería --}}
     <h3 class="mb-5 text-center text-lightblue fs-1 pt-5">{{__('Galería')}}</h3>
 

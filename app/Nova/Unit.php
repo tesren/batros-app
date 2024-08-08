@@ -2,26 +2,27 @@
 
 namespace App\Nova;
 
-use Illuminate\Http\Request;
-use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\Number;
-use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\Text;
+use App\Nova\Shape;
 use App\Nova\Section;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Panel;
+use App\Nova\PaymentPlan;
+use Laravel\Nova\Fields\ID;
+use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Tag;
+use Laravel\Nova\Fields\URL;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Badge;
+use Laravel\Nova\Fields\HasOne;
+use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\BelongsTo;
+use App\Nova\Actions\ChangeUnitView;
+use Laravel\Nova\Fields\BelongsToMany;
+use App\Nova\Actions\AssignPaymentPlan;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
-use Laravel\Nova\Panel;
-use Laravel\Nova\Fields\BelongsToMany;
-use Laravel\Nova\Fields\Tag;
-use App\Nova\PaymentPlan;
-use Laravel\Nova\Fields\HasOne;
-use App\Nova\Shape;
-use App\Nova\Actions\ChangeUnitView;
-use App\Nova\Actions\AssignPaymentPlan;
 
 class Unit extends Resource
 {
@@ -119,6 +120,8 @@ class Unit extends Resource
             ])->sortable(),
 
             new Panel('Imágenes', $this->imageFields()),
+            
+            URL::make('Tour Virtual', 'virtual_tour')->displayUsing(fn () => $this->virtual_tour)->hideFromIndex()->placeholder('Pegue solamente el link del Tour Virtual de la Unidad'),
 
             //BelongsToMany::make('Planes de pago', 'paymentPlans', PaymentPlan::class),
 
